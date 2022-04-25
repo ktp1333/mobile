@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>np_psv</title>
+    <meta name="apple-mobile-web-app-title" content="Q" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="description" content="">
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0, minimum-scale = 1, maximum-scale = 3, user-scalable = yes" />
+    <link rel="icon" sizes="192x192" href="../../app/np_psv/np_psv1.png">
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="./node_modules/onsenui/css/onsenui.min.css" />
+    <link rel="stylesheet" href="./node_modules/onsenui/css/onsen-css-components.min.css" />
+
+    <script type="text/javascript" src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./node_modules/onsenui/js/onsenui.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-material/angular-material.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-aria/angular-aria.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-messages/angular-messages.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-filter/dist/angular-filter.min.js"></script>
+    <script type="text/javascript" src="./node_modules/async/dist/async.min.js"></script>
+    <script type="text/javascript" src="./node_modules/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-moment/angular-moment.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-md5/angular-md5.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angularjs-onsenui/dist/angularjs-onsenui.min.js"></script>
+
+    <link href="../template/bi/c3/c3.css" rel="stylesheet" type="text/css">
+    <script src="../template/bi/d3/d3.min.js" charset="utf-8"></script>
+    <script src="../template/bi/c3/c3.min.js"></script>
+
+    <link href="./mycss.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../../app/np_psv/np_psv.controller.js"></script>
+
+</head>
+
+<body ng-app="app" ng-controller="np_psvController">
+
+    <div>
+        <ons-splitter var="mySplitter" ng-controller="np_psvController as np_psv">
+            <ons-splitter-side side="left" width="220px" collapse swipeable>
+                <ons-page>
+                    <ons-list>
+                        <ons-list-item ng-click="np_psv.load('home.html')" tappable>
+                            Home
+                        </ons-list-item>
+                        <!-- <ons-list-item ng-click="np_psv.load('Episode.html')" tappable>
+                            Check up
+                        </ons-list-item>
+                        <ons-list-item ng-click="np_psv.load('about.html')" tappable>
+                            About
+                        </ons-list-item> -->
+                    </ons-list>
+                </ons-page>
+            </ons-splitter-side>
+            <ons-splitter-content page="home.html"></ons-splitter-content>
+        </ons-splitter>
+
+        <template id="home.html">
+            <ons-page>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        <div ID='btime'></div>
+                    </div>
+                </ons-toolbar>
+
+                <ons-card>
+                    <div>
+                        <div ID='atime'></div>
+                        <ons-row vertical-align='center' style="padding: 8px">
+                            <ons-button ng-click="timestart1()" ng-disabled="dis_start1">Start 1</ons-button>
+                            <ons-list-title>start 1 : {{start  | date : "HH:MM:ss.sss" }} </ons-list-title>
+                        </ons-row>
+                        <ons-row vertical-align='center' style="padding: 8px">
+                            <ons-button ng-click="timestop1()" ng-disabled="dis_stop1">Stop 1</ons-button>
+                            <ons-list-title>stop 1 : {{stop  | date : "HH:MM:ss.sss" }} </ons-list-title>
+                        </ons-row>
+                    </div>
+
+                    <div class="content" ng-show="show_a">
+                        <ons-list>
+                            <ons-list-item>t1 : {{value_fixa}} sec</ons-list-item>
+                        </ons-list>
+                    </div>
+                    <div>
+                        <ons-row vertical-align='center' style="padding: 8px">
+                            <ons-button ng-click="timestart2()" ng-disabled="dis_start2">Start 2</ons-button>
+                            <ons-list-title>start 2 : {{start2  | date : "HH:MM:ss.sss" }} </ons-list-title>
+                        </ons-row>
+                        <ons-row vertical-align='center' style="padding: 8px">
+                            <ons-button ng-click="timestop2()" ng-disabled="dis_stop2">Stop 2</ons-button>
+                            <ons-list-title>stop 2 : {{stop2  | date : "HH:MM:ss.sss" }} </ons-list-title>
+                        </ons-row>
+                    </div>
+                    <div class="content" ng-show="show_ans1">
+                        <ons-list>
+                            <ons-row vertical-align='center' style="padding: 8px">
+                                <ons-list-title>t2 : {{value_b2}} sec</ons-list-title>
+                                <ons-list-title>t3 : {{value_c2}} sec</ons-list-title>
+                            </ons-row>
+                            <ons-list-title>SDI : {{ans2 | number:4}} </ons-list-title>
+                        </ons-list>
+                    </div>
+
+                    <div>
+                        <ons-row vertical-align='center' style="padding: 8px">
+                            <ons-button ng-click="timestart3()" ng-disabled="dis_start3">Start 3</ons-button>
+                            <ons-list-title>start 3 : {{start3  | date : "HH:MM:ss.sss" }} </ons-list-title>
+                        </ons-row>
+                        <ons-row vertical-align='center' style="padding: 8px">
+                            <ons-button ng-click="timestop3()" ng-disabled="dis_stop3">Stop 3</ons-button>
+                            <ons-list-title>stop 3 : {{stop3  | date : "HH:MM:ss.sss" }} </ons-list-title>
+                        </ons-row>
+                    </div>
+                    <div class="content" ng-show="show_ans2">
+                        <ons-list>
+                            <ons-row vertical-align='center' style="padding: 8px">
+                                <ons-list-title>t2-2 : {{value_b3}} sec</ons-list-title>
+                                <ons-list-title>t3-2 : {{value_c3}} sec</ons-list-title>
+                            </ons-row>
+                            <ons-list-title>SDI-2 : {{ans3 | number:4}} </ons-list-title>
+                        </ons-list>
+                    </div>
+
+                    <div>
+                        <ons-row vertical-align='center' style="padding: 8px">
+                            <ons-button ng-click="timestart4()" ng-disabled="dis_start4">Start 4</ons-button>
+                            <ons-list-title>start 4 : {{start4  | date : "HH:MM:ss.sss" }} </ons-list-title>
+                        </ons-row>
+                        <ons-row vertical-align='center' style="padding: 8px">
+                            <ons-button ng-click="timestop4()" ng-disabled="dis_stop4">Stop 4</ons-button>
+                            <ons-list-title>stop 4 : {{stop4  | date : "HH:MM:ss.sss" }} </ons-list-title>
+                        </ons-row>
+                    </div>
+                    <div class="content" ng-show="show_ans3">
+                        <ons-list>
+                            <ons-row vertical-align='center' style="padding: 8px">
+                                <ons-list-title>t2-3 : {{value_b4}} sec</ons-list-title>
+                                <ons-list-title>t3-3 : {{value_c4}} sec</ons-list-title>
+                            </ons-row>
+                            <ons-list-title>SDI-3 : {{ans4 | number:4}} </ons-list-title>
+                        </ons-list>
+                    </div>
+
+                    <div>
+                        <ons-row vertical-align='center' style="padding: 8px">
+                            <ons-button ng-click="timestart5()" ng-disabled="dis_start5">Start 5</ons-button>
+                            <ons-list-title>start 5 : {{start5  | date : "HH:MM:ss.sss" }} </ons-list-title>
+                        </ons-row>
+                        <ons-row vertical-align='center' style="padding: 8px">
+                            <ons-button ng-click="timestop5()" ng-disabled="dis_stop5">Stop 5</ons-button>
+                            <ons-list-title>stop 5 : {{stop5  | date : "HH:MM:ss.sss" }} </ons-list-title>
+                        </ons-row>
+                    </div>
+                    <div class="content" ng-show="show_ans4">
+                        <ons-list>
+                            <ons-row vertical-align='center' style="padding: 8px">
+                                <ons-list-title>t2-4 : {{value_b5}} sec</ons-list-title>
+                                <ons-list-title>t3-4: {{value_c5}} sec</ons-list-title>
+                            </ons-row>
+                            <ons-list-title>SDI-4 : {{ans5 | number:4}} </ons-list-title>
+                        </ons-list>
+                    </div>
+
+                    <ons-button modifier="large" ng-click="reset()">Reset</ons-button>
+                </ons-card>
+            </ons-page>
+        </template>
+
+        <template id="Episode.html">
+            <ons-page>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        Check up Date
+                    </div>
+                </ons-toolbar>
+
+                <ons-page>
+                    <!-- <ons-toolbar>
+                          <div class="center">List Episode</div>
+                        </ons-toolbar> -->
+
+                    <ons-list>
+                        <ons-list-item ons-lazy-repeat="MyDelegate" ng-click="showdetail()">
+                            <!-- <ons-list-item ons-lazy-repeat="MyDelegate"  ng-click="splitter.load('about.html')"  > -->
+
+                            วันที่ : {{item.startdate  }}<Br>
+                            EN : {{item.visitid}}<Br>
+                            <!-- อาการ : {{item.cchpi}} -->
+                        </ons-list-item>
+                    </ons-list>
+                </ons-page>
+            </ons-page>
+        </template>
+
+        <template id="result.html">
+            <ons-page>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        result
+                    </div>
+                </ons-toolbar>
+                <!-- <div style="text-align: center;">
+                    result 
+                </div> -->
+                <ons-card>
+                    <div id='chart_fbs'>
+                </ons-card>
+
+
+    </div>
+    </ons-page>
+    </template>
+
+    <template id="about.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button ng-click="mySplitter.left.open()">
+                        <ons-icon icon="md-menu"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+            </ons-toolbar>
+            <ons-card>
+                <img src="./app/menu/about.jpg" alt="" style="width: 100%">
+
+            </ons-card>
+        </ons-page>
+    </template>
+    </div>
+</body>
+
+</html>

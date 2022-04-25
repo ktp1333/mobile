@@ -1,0 +1,81 @@
+<form id="show_report2">
+  <div ng-if="show_report2">
+    <md-card flex-gt-xs="95" ng-if="show_waiting_img" >
+      <md-card-content>
+        <div style="height:80%;" flex layout="column">
+          <div class="align-c">
+            <img class="square" src="../app/image/loading.gif" style="width:100px">
+            <div class="alert alert-warning">
+              <strong> โปรดรอสักครู่</strong>
+            </div>
+          </div>
+          <div>{{note_text}}</div>
+        </div>
+      </md-card-content>
+    </md-card>
+    <!-- <div class="align-c">
+      <md-button class="md-raised font-white1 width-400 bgcolor800" >
+        report daily {{ward}}
+      </md-button>
+      <md-button class="md-raised font-white1 width-150 bgcolor800" ng-click="show_daily()">
+          Sum all day
+        </md-button>
+    </div> -->
+    <!-- style="overflow-y:scroll; " -->
+    <div class="panel-body collapse" runat="server" >
+      <table class="table table-hover ">
+        <tr class="bgcolor200">
+          <th class="align-c">date</th>
+          <th class="align-c width170">time</th>
+          <th class="align-r">Cencus</th>
+          <th class="align-r">Require hour</th>
+          <!-- <th class="align-r">Staff hour</th> -->
+          <th class="align-r">Total staff</th>
+          <th class="align-r">Productivity</th>
+
+        </tr>
+        <tr ng-repeat="detail in dataall | orderBy:['-date','-time']">
+          <td class="align-c">{{detail.date}}</td>
+          <td class="align-l">{{detail.time}}</td>
+          <td class="align-r">{{detail.census}}</td>
+          <td class="align-r">{{detail.req_hrc | number:2}}</td>
+          <!-- <td class="align-r">{{detail.staffHr | number:2}}</td> -->
+          <td class="align-r bgcolor50">{{detail.staff | number:0}}</td>
+          <td class="align-r bgcolor50">{{detail.product | number:2}}</td>
+
+        </tr>
+      </table>
+      <!-- <table class="table table-hover">
+        <tr class="bgcolor200">
+          <th class="align-c" >date</th>
+          <th class="align-c width170" >time</th>
+          <th class="align-r" >Cencus</th>
+          <th class="align-r" >Require hour</th>
+          <th class="align-r" >Staff hour</th>
+          <th class="align-r" >Productivity</th>
+          <th class="align-r" >Actual RN</th>
+          <th class="align-r" >Actual PN</th>
+          <th class="align-r" >Total staff</th>
+          <th class="align-r" >Require RN</th>
+          <th class="align-r" >Require PN</th>
+          <th class="align-r" >Total Require</th>
+        </tr>
+        <tr ng-repeat="detail in showdata | orderBy:'-date'">
+          <td class="align-c" >{{detail._id.date}}</td>
+          <td class="align-l" >{{detail.timethai}}</td>
+          <td class="align-r" >{{detail.census}}</td>
+          <td class="align-r" >{{detail.reqHr | number:2}}</td>
+          <td class="align-r" >{{detail.staffHr | number:2}}</td>
+          <td class="align-r bgcolor50" >{{detail.pro| number:2}}</td>
+          <td class="align-r" >{{detail.HOD+detail.RN | number:0}}</td>
+          <td class="align-r" >{{detail.PN | number:0}}</td>
+          <td class="align-r bgcolor50" >{{detail.HOD+detail.RN+detail.PN | number:0}}</td>
+          <td class="align-r" >{{detail.reRN| number:2}}</td>
+          <td class="align-r" >{{detail.rePN| number:2}}</td>
+          <td class="align-r bgcolor50" >{{detail.reqStaff| number:2}}</td>
+        </tr>
+      </table> -->
+    </div>
+  </div>
+
+</form>

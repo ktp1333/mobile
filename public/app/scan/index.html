@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>scan</title>
+    <meta name="apple-mobile-web-app-title" content="PRINC HEALTH BI" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="description" content="">
+    <meta name="viewport"
+        content="width = device-width, initial-scale = 1.0, minimum-scale = 1, maximum-scale = 3, user-scalable =yes" />
+    <link rel="icon" sizes="192x192" href="app/scan/k.gif">
+    <meta charset="utf-8">
+    <script type="text/javascript" src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="./node_modules/onsenui/css/onsenui.min.css" />
+    <link rel="stylesheet" href="./node_modules/onsenui/css/onsen-css-components.min.css" />
+
+
+    <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./node_modules/onsenui/js/onsenui.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-material/angular-material.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-aria/angular-aria.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-messages/angular-messages.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-filter/dist/angular-filter.min.js"></script>
+
+    <script type="text/javascript" src="./node_modules/async/dist/async.min.js"></script>
+    <script type="text/javascript" src="./node_modules/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-moment/angular-moment.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-md5/angular-md5.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angularjs-onsenui/dist/angularjs-onsenui.min.js"></script>
+    <script type="text/javascript" src="./node_modules/underscore/underscore.js"></script>
+    <script type="text/javascript" src="../../app/scan/minified/webcam.js"></script>
+    <script type="text/javascript" src="../../app/scan/minified/bc-qr-reader.js"></script>
+    <script src="../../app/scan/minified/html5-qrcode.min.js"></script>
+    <link href="../template/bi/c3/c3.css" rel="stylesheet" type="text/css">
+    <script src="../template/bi/d3/d3.min.js" charset="utf-8"></script>
+    <script src="../template/bi/c3/c3.min.js"></script>
+    <link href="../../app/css/table.css" rel="stylesheet" type="text/css">
+    <link href="../../app/css/font.css" rel="stylesheet" type="text/css">
+    <link href="../../app/css/div.css" rel="stylesheet" type="text/css">
+    <link href="../../app/css/color.css" rel="stylesheet" type="text/css">
+    <!-- <link href="../css/div.css" rel="stylesheet" type="text/css"> -->
+    <script type="text/javascript" src="../../app/scan/scan.controller.js"></script>
+    <!-- <script type="text/javascript" src="../../app/scan/scaning.controller.js"></script> -->
+
+    <style>
+        .qr {
+            width: 600px;
+            border: 1px solid silver;
+        }
+
+        #qr-canvas {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body ng-app="app" ng-controller="scanController">
+
+    <div>
+        <ons-splitter var="mySplitter" ng-controller="scanController as t">
+            <ons-splitter-side side="left" width="220px" collapse swipeable>
+                <ons-page>
+                    <ons-list>
+                        <ons-list-item ng-click="mySplitter.left.close()" tappable>
+                            ..
+                        </ons-list-item>
+                        <ons-list-item ng-click="gohome()" tappable>
+                            Waiting (all case)
+                        </ons-list-item>
+                        <ons-list-item ng-click="qrscan()" tappable>
+                            scan
+                        </ons-list-item>
+
+                        <ons-list-item ng-click="loadabout()" tappable>
+                            About
+                        </ons-list-item>
+                        <!-- <ons-list-item ng-click="gohome()" tappable>
+                            Log out
+                        </ons-list-item> -->
+                    </ons-list>
+                </ons-page>
+            </ons-splitter-side>
+            <ons-splitter-content page="login.html"></ons-splitter-content>
+        </ons-splitter>
+
+
+
+
+        <template id="about.html">
+            <ons-page>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+                <ons-card>
+                    about
+                    <img src="./app/menu/about.jpg" alt="" style="width: 100%">
+
+                </ons-card>
+            </ons-page>
+        </template>
+
+        <template id="login.html">
+            <ons-page>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="right">
+                        <ons-button ID='scan' ng-click="scanqr()">
+                            <ons-icon icon="ion-navicon, material:md-scanner" size="30px">
+                        </ons-button>
+                    </div>
+
+
+
+                </ons-toolbar>
+                <ons-card class="align-c bgpastelblue3 height75">
+
+                    <div style="text-align: center; margin-top: 30px">
+                        <p>
+                            <ons-input id="user" modifier="underbar" placeholder="user" float ng-model="user">
+                            </ons-input>
+                        </p>
+                        <p>
+                            <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float
+                                ng-model="password"></ons-input>
+                        </p>
+                        <p style="margin-top: 30px;">
+                            <ons-button ng-click="login(user,password)">Sign in</ons-button>
+                        </p>
+                    </div>
+                    <img src="app/scan/key.png" alt="Onsen UI" style="width: 70%">
+                </ons-card>
+            </ons-page>
+        </template>
+
+        <template id="qrscan.html">
+            <ons-page>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+                <ons-card>
+                    <div style="font-size: large;">Result</div>
+                    <div id="qr_result" style="font-size: large;">
+
+                    </div>
+                    <div id="reader" width="600px" height="600px"></div>
+                </ons-card>
+            </ons-page>
+        </template>
+    </div>
+</body>
+
+</html>

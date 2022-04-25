@@ -1,0 +1,682 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>track</title>
+    <meta name="apple-mobile-web-app-title" content="PRINC HEALTH BI" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="description" content="">
+    <meta name="viewport"
+        content="width = device-width, initial-scale = 1.0, minimum-scale = 1, maximum-scale = 3, user-scalable =yes" />
+    <link rel="icon" sizes="192x192" href="app/track/k.gif">
+    <meta charset="utf-8">
+    <script type="text/javascript" src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="./node_modules/onsenui/css/onsenui.min.css" />
+    <link rel="stylesheet" href="./node_modules/onsenui/css/onsen-css-components.min.css" />
+
+
+    <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./node_modules/onsenui/js/onsenui.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-material/angular-material.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-aria/angular-aria.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-messages/angular-messages.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-filter/dist/angular-filter.min.js"></script>
+
+    <script type="text/javascript" src="./node_modules/async/dist/async.min.js"></script>
+    <script type="text/javascript" src="./node_modules/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-moment/angular-moment.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-md5/angular-md5.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angularjs-onsenui/dist/angularjs-onsenui.min.js"></script>
+    <script type="text/javascript" src="./node_modules/underscore/underscore.js"></script>
+    <script type="text/javascript" src="../../app/track/minified/webcam.js"></script>
+    <script type="text/javascript" src="../../app/track/minified/bc-qr-reader.js"></script>
+
+    <link href="../template/bi/c3/c3.css" rel="stylesheet" type="text/css">
+    <script src="../template/bi/d3/d3.min.js" charset="utf-8"></script>
+    <script src="../template/bi/c3/c3.min.js"></script>
+    <link href="../../app/css/table.css" rel="stylesheet" type="text/css">
+    <link href="../../app/css/font.css" rel="stylesheet" type="text/css">
+    <link href="../../app/css/div.css" rel="stylesheet" type="text/css">
+    <link href="../../app/css/color.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../../app/track/track.controller.js"></script>
+    <!-- <script type="text/javascript" src="../../app/track/tracking.controller.js"></script> -->
+   
+    <style>
+        .qr {
+            width: 600px;
+            border: 1px solid silver;
+        }
+        #qr-canvas { display: none; }
+    </style>
+   
+</head>
+
+<body ng-app="app" ng-controller="trackController">
+
+    <div>
+        <ons-splitter var="mySplitter" ng-controller="trackController as vm">
+            <ons-splitter-side side="left" width="220px" collapse swipeable>
+                <ons-page>
+                    <ons-list>
+                        <ons-list-item ng-click="mySplitter.left.close()" tappable>
+                            ..
+                        </ons-list-item>
+                        <ons-list-item ng-click="vm.load('login.html')" tappable>
+                            Login
+                        </ons-list-item>
+                        <ons-list-item ng-click="vm.load('search4d.html')" tappable>
+                            search
+                        </ons-list-item>
+                      
+                        <!-- <ons-list-item ng-click="gohome()" tappable>
+                            Log out
+                        </ons-list-item> -->
+                    </ons-list>
+                </ons-page>
+            </ons-splitter-side>
+            <ons-splitter-content page="login.html"></ons-splitter-content>
+        </ons-splitter>
+        <template id="login.html">
+            <ons-page>
+                <ons-toolbar class="bgfacebook ">
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="right">
+                        <ons-button ID='scan' ng-click="scanqr()">
+                            <ons-icon icon="ion-navicon, material:md-scanner" size="30px">
+                        </ons-button>
+                    </div>
+
+
+
+                </ons-toolbar>
+                <ons-card class="align-c height100 bgfacebook">
+
+                    <div style="text-align: center; margin-top: 30px">
+                        <p>
+                            <ons-input id="user" modifier="underbar" placeholder="HN" float ng-model="vm.user">
+                            </ons-input>
+                        </p>
+                        <p>
+                            <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float
+                                ng-model="vm.password"></ons-input>
+                        </p>
+                        <p style="margin-top: 30px;">
+                            <ons-button ng-click="login(vm.user,vm.password)">Sign in</ons-button>
+                        </p>
+                    </div>
+                    <img src="app/track/key.png" alt="Onsen UI" style="width: 70%">
+                </ons-card>
+            </ons-page>
+        </template>
+        <template id="search4d.html">
+            <ons-page>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center ">
+                        <div class="fontr7 "> {{site}}
+                            <ons-input id="serchen" ng-model="vm.serchen" modifier="underbar"
+                                placeholder="serchen" float>
+                            </ons-input>
+                        </div>
+                    </div>
+
+                    <div class="right">
+                        <div flex layout="row">
+
+                            <!-- <ons-button ID='scan' ng-click="search4digit(search4dig)">
+                                <ons-icon icon="ion-navicon, material:md-scanner" size="30px">
+                            </ons-button> -->
+                            <ons-button ID='search4' ng-click="serchbyen(vm.serchen)">
+                                <ons-icon icon="ion-navicon, material:md-search" size="30px">
+                            </ons-button>
+                            <!-- <ons-button ID='search4' ng-click="serchbyen(vm.serchen)"
+                            style="float:right;margin-top: 1vH;margin-right: 1vH;">
+                            <ons-icon icon="md-search"></ons-icon> -->
+                        </ons-button>
+                        </div>
+                    </div>
+                </ons-toolbar>
+                <ons-list>
+                    <table class="table table-hover">
+                        <tr ng-repeat="detail in seach4d">
+                            <td>
+                                <ons-card>
+                                    <table class="table table-hover">
+                                        <tr>
+                                            <td colspan="2">
+                                                <div class="marginleft15 fontn fontbold fontbg11 align-r">
+                                                    waiting time: <font class="font-15em"
+                                                        color="{{detail.waitingcolor}}">
+                                                        {{detail.waiting}}</font>
+                                                </div>
+                                                <div class=" fontn fontbold fontr9">
+                                                    name : {{detail.patientuid.firstname}}
+                                                    {{detail.patientuid.lastname}}
+                                                </div>
+                                                <div class="marginleft15 fonts fontbold fontgr13">
+                                                    department : {{detail.department[0].name}}
+                                                </div>
+                                                <div class="marginleft15 fonts fontbold fontgr13">
+                                                    organize : {{detail.orguid.description}}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:40%;">
+                                                <img ng-if="detail.patientuid.patientimage.patientphoto != null"
+                                                    style="width: 95%;"
+                                                    ng-src="{{detail.patientuid.patientimage.patientphoto}}">
+                                                <img ng-if="detail.patientuid.patientimage.patientphoto == null"
+                                                    style="width:95%;" src="./app/track/nopeople.png"
+                                                    alt="No picture found">
+                                            </td>
+                                            <td>
+                                                <div class="marginleft15 fonts fontbold fontbg10">
+                                                    Age : {{getAge(detail.patientuid.dateofbirth)}}
+                                                </div>
+
+                                                <div class="marginleft15 fonts fontbold fontbg6">
+                                                    EN : {{detail.visitid}}
+                                                </div>
+                                                <div class="marginleft15 fonts fontbold fontbg6">
+                                                    HN : {{detail.patientuid.mrn}}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <table class="table table-hover"
+                                                    style="border-collapse: collapse;border: 1px solid black;">
+                                                    <!-- <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            Registered
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:60vW" class="align-c fonts fontgr13">
+                                                            {{detail.a1_Registered | date : "HH : mm" }}
+                                                        </td>
+                                                    </tr> -->
+                                                    <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            Arrive counter
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:30vW "
+                                                            class="align-c fonts fontgr13">
+                                                            {{detail.a2_Arrived | date : "HH : mm" }}
+                                                        </td>
+                                                        <!-- <td style="border: 1px solid black;width:30vW;" class="align-c fonts ">
+                                                                <font color="{{detail.w12c}}">{{detail.w12}}</font>
+                                                        </td> -->
+                                                    </tr>
+                                                    <!-- <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            Screening Completed
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:60vW" class="align-c fonts fontgr13">
+                                                            {{detail.a3_ScreeningCompleted | date : "HH : mm" }}
+                                                        </td>
+                                                    </tr> -->
+                                                    <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            see Doctor
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:60vW"
+                                                            class="align-c fonts fontgr13">
+                                                            {{detail.a4_ConsultationStarted | date : "HH : mm" }}
+                                                        </td>
+                                                    </tr>
+                                                    <!-- <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            Dr Completed
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:60vW" class="align-c fonts fontgr13">
+                                                            {{detail.a5_ConsultationCompleted | date : "HH : mm" }}
+                                                        </td>
+                                                    </tr> -->
+                                                    <!-- <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            Observe
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:60vW" class="align-c fonts fontgr13">
+                                                            {{detail.a6_UnderObservation | date : "HH : mm" }}
+                                                        </td>
+                                                    </tr> -->
+                                                    <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            Med D/C
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:60v30vWW"
+                                                            class="align-c fonts fontgr13">
+                                                            {{detail.a7_MedicalDischarge | date : "HH : mm" }}
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:30vW;"
+                                                            class="align-c fonts ">
+                                                            <font color="{{detail.w27c}}">{{detail.w27}}</font>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            Billing
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:30vW" class="align-c fonts fontgr13">
+                                                            {{detail.a8_BillingInprogress | date : "HH : mm" }}
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:30vW;" class="align-c fonts ">
+                                                                <font color="{{detail.w78c}}">{{detail.w78}}</font>
+                                                        </td>
+                                                    </tr> -->
+                                                    <!-- <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            Bill Finalized
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:60vW" class="align-c fonts fontgr13">
+                                                            {{detail.a9_BillFinalized | date : "HH : mm" }}
+                                                        </td>
+                                                    </tr> -->
+                                                    <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            Financial D/C
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:30vW"
+                                                            class="align-c fonts fontgr13">
+                                                            {{detail.a10_FinancialDischarge | date : "HH : mm" }}
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:30vW;"
+                                                            class="align-c fonts ">
+                                                            <font color="{{detail.w810c}}">{{detail.w810}}</font>
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-show="detail.note">
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            note
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:30vW;"
+                                                            class="align-c fonts " colspan="2">
+                                                            {{detail.note}}
+                                                        </td>
+                                                    </tr>
+
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </ons-card>
+                            </td>
+                        </tr>
+                    </table>
+                </ons-list>
+            </ons-page>
+        </template>
+        <template id="track.html">
+            <ons-page>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center ">
+                        <div class="fontr7 "> {{site}}
+                            <ons-input id="serchen" ng-model="vm.serchen" modifier="underbar"
+                                placeholder="serchen" float>
+                            </ons-input>
+                        </div>
+                    </div>
+
+                    <div class="right">
+                        <ons-button ID='search4' ng-click="serchbyen(vm.serchen)"
+                            style="float:right;margin-top: 1vH;margin-right: 1vH;">
+                            <ons-icon icon="md-search"></ons-icon>
+                        </ons-button>
+
+                    </div>
+                </ons-toolbar>
+                <ons-list>
+                    <table class="table table-hover">
+                        <tr ng-repeat="detail in show_case  | orderBy : '-timewait'">
+                            <td>
+                                <ons-card>
+                                    <table class="table table-hover">
+                                        <tr>
+                                            <td colspan="2">
+                                                <div class="marginleft15 fontn fontbold fontbg11 align-r">
+                                                    waiting time: <font class="font-15em"
+                                                        color="{{detail.waitingcolor}}">
+                                                        {{detail.waiting}}</font>
+                                                </div>
+                                                <div class=" fontn fontbold fontr9">
+                                                    name : {{detail.patientuid.firstname}}
+                                                    {{detail.patientuid.lastname}}
+                                                </div>
+                                                <div class="marginleft15 fonts fontbold fontgr13">
+                                                    department : {{detail.department[0].name}}
+                                                </div>
+                                                <div class="marginleft15 fonts fontbold fontgr13">
+                                                    organize : {{detail.orguid.description}}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:40%;">
+                                                <img ng-if="detail.patientuid.patientimage.patientphoto != null"
+                                                    style="width: 95%;"
+                                                    ng-src="{{detail.patientuid.patientimage.patientphoto}}">
+                                                <img ng-if="detail.patientuid.patientimage.patientphoto == null"
+                                                    style="width:95%;" src="./app/track/nopeople.png"
+                                                    alt="No picture found">
+                                            </td>
+                                            <td>
+                                                <div class="marginleft15 fonts fontbold fontbg10">
+                                                    Age : {{getAge(detail.patientuid.dateofbirth)}}
+                                                </div>
+
+                                                <div class="marginleft15 fonts fontbold fontbg6">
+                                                    EN : {{detail.visitid}}
+                                                </div>
+                                                <div class="marginleft15 fonts fontbold fontbg6">
+                                                    HN : {{detail.patientuid.mrn}}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <table class="table table-hover"
+                                                    style="border-collapse: collapse;border: 1px solid black;">
+                                                    <!-- <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            Registered
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:60vW" class="align-c fonts fontgr13">
+                                                            {{detail.a1_Registered | date : "HH : mm" }}
+                                                        </td>
+                                                    </tr> -->
+                                                    <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            Arrive counter
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:30vW "
+                                                            class="align-c fonts fontgr13">
+                                                            {{detail.a2_Arrived | date : "HH : mm" }}
+                                                        </td>
+                                                        <!-- <td style="border: 1px solid black;width:30vW;" class="align-c fonts ">
+                                                                <font color="{{detail.w12c}}">{{detail.w12}}</font>
+                                                        </td> -->
+                                                    </tr>
+                                                    <!-- <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            Screening Completed
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:60vW" class="align-c fonts fontgr13">
+                                                            {{detail.a3_ScreeningCompleted | date : "HH : mm" }}
+                                                        </td>
+                                                    </tr> -->
+                                                    <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            see Doctor
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:60vW"
+                                                            class="align-c fonts fontgr13">
+                                                            {{detail.a4_ConsultationStarted | date : "HH : mm" }}
+                                                        </td>
+                                                    </tr>
+                                                    <!-- <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            Dr Completed
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:60vW" class="align-c fonts fontgr13">
+                                                            {{detail.a5_ConsultationCompleted | date : "HH : mm" }}
+                                                        </td>
+                                                    </tr> -->
+                                                    <!-- <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            Observe
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:60vW" class="align-c fonts fontgr13">
+                                                            {{detail.a6_UnderObservation | date : "HH : mm" }}
+                                                        </td>
+                                                    </tr> -->
+                                                    <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            Med D/C
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:60v30vWW"
+                                                            class="align-c fonts fontgr13">
+                                                            {{detail.a7_MedicalDischarge | date : "HH : mm" }}
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:30vW;"
+                                                            class="align-c fonts ">
+                                                            <font color="{{detail.w27c}}">{{detail.w27}}</font>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            Billing
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:30vW" class="align-c fonts fontgr13">
+                                                            {{detail.a8_BillingInprogress | date : "HH : mm" }}
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:30vW;" class="align-c fonts ">
+                                                                <font color="{{detail.w78c}}">{{detail.w78}}</font>
+                                                        </td>
+                                                    </tr> -->
+                                                    <!-- <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            Bill Finalized
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:60vW" class="align-c fonts fontgr13">
+                                                            {{detail.a9_BillFinalized | date : "HH : mm" }}
+                                                        </td>
+                                                    </tr> -->
+                                                    <tr>
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            Financial D/C
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:30vW"
+                                                            class="align-c fonts fontgr13">
+                                                            {{detail.a10_FinancialDischarge | date : "HH : mm" }}
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:30vW;"
+                                                            class="align-c fonts ">
+                                                            <font color="{{detail.w810c}}">{{detail.w810}}</font>
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-show="detail.note">
+                                                        <td style="border: 1px solid black;width:35vW"
+                                                            class="align-l fonts fontgr8">
+                                                            note
+                                                        </td>
+                                                        <td style="border: 1px solid black;width:30vW;"
+                                                            class="align-c fonts " colspan="2">
+                                                            {{detail.note}}
+                                                        </td>
+                                                    </tr>
+
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </ons-card>
+                            </td>
+                        </tr>
+                    </table>
+                </ons-list>
+            </ons-page>
+        </template>
+        <template id="organise.html">
+            <ons-page>
+                <ons-toolbar class="bgfacebook ">
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        <div class="fontgr1"> CHOOSE ORGANIZATION
+                        </div>
+                    </div>
+                    <!-- <div class="right">
+                        <ons-button ng-click="bi.load('menuopd.html')"
+                            style="float:right;margin-top: 1.5vH;margin-right: 1vH;" class="backgr4">
+                            >>
+                        </ons-button>
+                    </div> -->
+                </ons-toolbar>
+                <ons-list modifier="inset" class="heightfull">
+                    <!-- <ons-list-header class="fontgr1 backgr9 fontbold fontm">Click to Choose Organise</ons-list-header>
+                    <div ng-repeat="detail in organize">
+                        <ons-list-item modifier="longdivider" class="backgr2 fontunderline fontm" ng-show="detail.flag"
+                            ng-click="opd(detail._id,detail.description)">{{detail.description}}</ons-list-item>
+                    </div> -->
+                    <div style="text-align: center; " ng-repeat="detail in organize">
+                        <ons-card ng-show="detail.show">
+                            <ons-button style="width:100%;" ng-click="chooseorg(detail)">{{detail.description}}
+                            </ons-button>
+                        </ons-card>
+                    </div>
+                </ons-list>
+            </ons-page>
+        </template>
+        <template id="department.html">
+            <ons-page>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        track
+                    </div>
+                </ons-toolbar>
+                <ons-list>
+                    <div style="text-align: center; " ng-repeat="dd in department  | orderBy : '-department'">
+                        <ons-card>
+                            <ons-button style="width:100%;" ng-click="choosedepartment(dd.department)">{{dd.department}}
+                            </ons-button>
+                        </ons-card>
+                    </div>
+                </ons-list>
+            </ons-page>
+        </template>
+        <template id="list.html">
+            <ons-page>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        Waiting list
+                    </div>
+                </ons-toolbar>
+                <ons-list>
+                    <div style="text-align: center; " ng-repeat="detail in show_case  | orderBy : '-timewait'">
+                        <ons-card>
+                            <div class="marginleft15 fontn fontbold fontbg11 align-r">
+                                waiting time: <font class="font-15em" color="{{detail.waitingcolor}}">
+                                    {{detail.waiting}}</font>
+                            </div>
+                            <div class=" fontn fontbold fontr9">
+                                name : {{detail.patientuid.firstname}}
+                                {{detail.patientuid.lastname}}
+                            </div>
+                            <div class="marginleft15 fonts fontbold fontgr13">
+                                department : {{detail.department[0].name}}
+                            </div>
+                        </ons-card>
+                    </div>
+                </ons-list>
+
+
+            </ons-page>
+        </template>
+        <template id="about.html">
+            <ons-page>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+                <ons-card>
+                    about
+                    <img src="./app/menu/about.jpg" alt="" style="width: 100%">
+
+                </ons-card>
+            </ons-page>
+        </template>
+        <template id="qrscan.html">
+            <ons-page>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+                <ons-card>
+                    <!-- <h2>Start scan</h2> -->
+                    <!-- <button ng-click="start()">Activate scanner</button> -->
+                    <!-- <p ng-hide="cameraRequested && !cameraIsOn">Your browser should ask for permission to use the camera.</p> -->
+                    <!-- <p ng-show="url">QR code detected!</p> -->
+                    <div class="fontr9" ng-click="searchhn(url)">{{ url }}</div>
+                    <ons-toolbar-button ng-click="searchhn(url)">
+                            start search
+                    </ons-toolbar-button>
+                    <!-- <div class="fontr9"><a href="{{url}}" target="_blank">{{ url }}</a></div> -->
+                    <div>
+                      <bc-qr-reader 
+                      active="cameraRequested" 
+                      on-result="processURLfromQR" 
+                      on-error="onError" 
+                      camera-status="cameraIsOn" 
+                     >
+                    </bc-qr-reader>
+                    </div>
+                    <!-- <div style="font-size: large;">Result</div> -->
+                    <!-- <div id="qr_result" style="font-size: large;">
+                       
+                        <ons-button ng-click="startScanning()">Start</ons-button>
+                        <ons-button ng-click="stopScanning()">Stop</ons-button>
+                    </div>> -->
+                    <!-- <div id="reader" class="qr" style="display: inline-block;" width="600px" height="600px"></div -->
+
+                </ons-card>
+            </ons-page>
+        </template>
+    </div>
+</body>
+
+</html>

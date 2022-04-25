@@ -1,0 +1,61 @@
+<form id="left" ng-if="left">
+  <style>
+    .img1 {
+      width: 100%;
+      /* min-width: 16vH;
+      max-width: 16vH; */
+      /* text-align: center; */
+      /* padding: 10px 10px 15px 10px; */
+      /* border: 5px solid #BFBFBF; */
+      /* background-color: white;
+      box-shadow: 10px 10px 5px #aaaaaa; */
+    }
+  </style>
+
+
+
+  <div class="panel panel-info ">
+    <div class="panel-heading bgcolor400" ng-if="show_dermo">
+      <div class="panel-body" style="height:80%;display:flex;"  layout="column">
+        <div layout="row" layout-align="top left">
+          <div style="width: 70%; ">
+            <div class="font-10 color-w">
+              HN: {{HN}}
+              <Br>Name: {{title}} {{patientname}}
+            </div>
+            <div class="font-07">
+              DOB: {{dob}}
+              <Br> Age: {{age}}
+              <Br>Gender: {{gender}}
+              <Br>Address: {{address}}</div>
+          </div>
+
+          <div style="width: 28%; ">
+            <div ng-if="showpict=='Y'" class="d1 align-c">
+              <img class="img1" src="{{patientphoto}}" alt="No picture found">
+            </div>
+            <div ng-if="showpict=='N'" class="d1 align-c ">
+              <img class="img1" src="template/img/nopeople.png" alt="No picture found">
+            </div>
+          </div>
+
+        </div>
+        <!-- <div class="panel-body bgcolorwhite" runat="server" style="overflow-y:scroll; height:500px"> -->
+        <div class="table-responsive bgcolor200" style="height:100%;">
+          <div class="align-c">
+            <!-- <div class="d4"> -->
+            <table class="bgcolor200 widthfittable">
+              <tr ng-repeat="data in datas | orderBy : '-newdate'">
+                <td class="align-c ">
+                  <md-button class="md-raised font-white1 width98 bgcolor600" ng-click="selecten(data.patientvisit._id,data.patientvisit.visitid,data.newdate,data.patientvisit.orguid)">
+                    {{data.newdate | date : "dd/MM/y"}} : {{data.patientvisit.visitid}}
+                  </md-button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

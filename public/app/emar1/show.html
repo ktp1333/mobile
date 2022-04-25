@@ -1,0 +1,389 @@
+<script>
+  $('#tableContainer').fixTableHeader();
+</script>
+<form id="emar">
+  <div id="showhour" flex layout="column" ng-show="box1">
+    <div flex class="divradius margin2" style="height:30vH;overflow-x:hidden;overflow-y:scroll; ">
+      <table class="table table-striped table-condensed table-hover fontn ">
+        <tr ng-repeat="mm in sumemar  | filter: { time: thistime } | orderBy: 'ptname'" ">
+        <td class=" align-l marginleft15 width30vW fontblue fontbold">
+          {{mm.time}}  : {{mm.name}}
+          </td>
+          <td class=" align-l marginleft15  fontblue fontbold">
+            :bed {{mm.bed}}: {{mm.ptname}}
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="align-c">
+      <md-button aria-label="this" class="btn4 width10vW paddingbtn" ng-click="formToggle()">close
+      </md-button>
+    </div>
+  </div>
+  <div class="panel-heading">
+    <H5 class="marginleft15  fontbold fontl"> {{wardname}}</H5>
+    <div flex layout='column'>
+      <div flex class="divradius paddingheader"
+        style="display: inline-block;width:98vW;height: 8vH;overflow-x:hidden;overflow-y:hidden; ">
+        <table border="0" class="table  table-condensed  fontn ">
+          <thead class="">
+            <tr>
+              <th class="align-c">
+                <md-button aria-label=" this" class=" btn4 width7vW paddingbtn">Bed</md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn">PRN</md-button>
+              </th>
+
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('00:00')">00
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('01:00')">01
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('02:00')">02
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('03:00')">03
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('04:00')">04
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('05:00')">05
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('06:00')">06
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('07:00')">07
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('08:00')">08
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('09:00')">09
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('10:00')">10
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('11:00')">11
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('12:00')">12
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('13:00')">13
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('14:00')">14
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('15:00')">15
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('16:00')">16
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('17:00')">17
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('18:00')">18
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('19:00')">19
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('20:00')">20
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('21:00')">21
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('22:00')">22
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('23:00')">23
+                </md-button>
+              </th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div flex class="divradius "
+        style="display: inline-block;width:98vW;height: 53vH;overflow-x:hidden;overflow-y:scroll; ">
+        <table border="0" class="table  table-condensed  fontn ">
+          <!-- <thead class="">
+            <tr>
+              <th class="align-c">
+                  <md-button aria-label=" this" class=" btn4 width7vW paddingbtn">Bed</md-button>
+              </th>
+              <th class="align-c">
+                  <md-button aria-label="this" class="btn4 width3vW paddingbtn" >PRN</md-button>
+              </th>
+            
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('00:00')">00
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('01:00')">01
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('02:00')">02
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('03:00')">03
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('04:00')">04
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('05:00')">05
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('06:00')">06
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('07:00')">07
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('08:00')">08
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('09:00')">09
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('10:00')">10
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('11:00')">11
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('12:00')">12
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('13:00')">13
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('14:00')">14
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('15:00')">15
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('16:00')">16
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('17:00')">17
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('18:00')">18
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('19:00')">19
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('20:00')">20
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('21:00')">21
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('22:00')">22
+                </md-button>
+              </th>
+              <th class="align-c">
+                <md-button aria-label="this" class="btn4 width3vW paddingbtn" ng-click="showmed_bytime('23:00')">23
+                </md-button>
+              </th>
+            </tr>
+          </thead> -->
+          <tbody>
+            <tr ng-repeat="m in emar_schedule | orderBy:'bed'" ">
+              <td class=" align-c paddingtd ">
+              <md-button aria-label=" this" class=" btn1 width7vW paddingbtn"
+              ng-click="getdetailmed(m.bed,m.beduid,'','')">
+                  <md-tooltip md-direction="right" class="fontm">{{m.ptname}}</md-tooltip>
+                  {{m.bed}}
+                 </md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.prn,'prn')">
+                <md-button aria-label="this" class="btn2 width3vW paddingbtn" ng-if="m.prn==X"></md-button>
+                <md-button aria-label="this" class="btn22 width3vW paddingbtn" ng-if="m.prn!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h0,'h0')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h0==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h0!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h1,'h1')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h1==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h1!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h2,'h2')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h2==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h2!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h3,'h3')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h3==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h3!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h4,'h4')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h4==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h4!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h5,'h5')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h5==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h5!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h6,'h6')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h6==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h6!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h7,'h7')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h7==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h7!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h8,'h8')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h8==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h8!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h9,'h9')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h9==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h9!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h10,'h10')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h10==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h10!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h11,'h11')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h11==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h11!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h12,'h12')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h12==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h12!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h13,'h13')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h13==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h13!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h14,'h14')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h14==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h14!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h15,'h15')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h15==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h15!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h16,'h16')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h16==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h16!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h17,'h17')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h17==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h17!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h18,'h18')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h18==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h18!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h19,'h19')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h19==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h19!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h20,'h20')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h20==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h20!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h21,'h21')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h21==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h21!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h22,'h22')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h22==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h22!=X"></md-button>
+              </td>
+              <td class="align-c paddingtd " ng-click="getdetailmed(m.bed,m.beduid,m.h23,'h23')">
+                <md-button aria-label="this" class="btn3 width3vW paddingbtn" ng-if="m.h23==X"></md-button>
+                <md-button aria-label="this" class="btn33 width3vW paddingbtn" ng-if="m.h23!=X"></md-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div flex layout='row' class=" bgcolor50 margintop1 divradius">
+        <div class="divradius margin4 " style="width:20vW;height: 30vH;overflow-x:hidden;overflow-y:hidden; ">
+
+          <div class="fontm fontgreen">Bed: {{bed}}</div>
+          <div class=" fontbold">name: {{name}}</div>
+          <div class="fontgray">HN: {{mrn}}</div>
+          <div class="fonts fontgray">DOB: {{thaiDOB  | date : "dd.MM.y" }}</div>
+          <div class="fonts fontgray">Age: {{age}}</div>
+
+        </div>
+        <div flex class="divradius margin2" style="height:26vH;overflow-x:hidden;overflow-y:scroll; ">
+          <table class="table table-striped table-condensed table-hover fontn ">
+            <tr ng-repeat="mm in meddetail | orderBy : 'dtime'" ">
+              <td class="fonts align-l marginleft15 width30vW fontblue fontbold">
+                {{mm.dtime}} : {{mm.name}} {{mm.dosage}} {{mm.dosageUOM}}
+              </td>
+              <td class="fonts align-l marginleft15 fontgreen">
+                {{mm.freq}}
+              </td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</form>

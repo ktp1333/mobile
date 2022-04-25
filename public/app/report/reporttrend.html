@@ -1,0 +1,105 @@
+<form id="show_reporttrend">
+  <div ng-if="show_reporttrend">
+    <!-- <div class="align-c">
+      <md-button class="md-raised font-white1 width-400 bgcolor800" >
+        report daily {{ward}}
+      </md-button>
+      <md-button class="md-raised font-white1 width-150 bgcolor800" ng-click="show_daily()">
+          Sum all day
+        </md-button>
+    </div> -->
+    <!-- style="overflow-y:scroll; " -->
+    <!-- ng-if="show='Y'" -->
+    <!-- box right 1 loading page -->
+    <md-card flex-gt-xs="95" ng-if="show_waiting_img" >
+      <md-card-content>
+        <div style="height:80%;" flex layout="column">
+          <div class="align-c">
+            <img class="square" src="../app/image/loading.gif" style="width:100px">
+            <div class="alert alert-warning">
+              <strong> โปรดรอสักครู่</strong>
+            </div>
+          </div>
+          <div>{{note_text}}</div>
+        </div>
+      </md-card-content>
+    </md-card>
+    <div class="panel-body collapse" runat="server">
+      <div class="agile-grids">
+        <div class="col-md-12 charts-right">
+          <div class="area-grids">
+            <div class="area-grids-heading">
+              <!-- <h3>OPD trend</h3> -->
+            </div>
+            <div id='chart1'>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <md-content class="md-padding" layout-xs="row" layout="row">
+      <md-card flex-gt-xs="95" style="height:80%">
+        <!-- <md-card-title>
+              <md-card-title-text>
+                  <span class="md-headline">Stock:</span>
+                  <span class="md-subhead">
+
+                  </span>
+              </md-card-title-text>
+          </md-card-title> -->
+        <span class="md-headline col-sm-offset-1 col-sm-11">Average daily productivity</span>
+        <div class="column form-group">
+
+          <div class="panel-body " runat="server" style="overflow-y:scroll; height:90%">
+            <table class="table table-hover ">
+              <tr class="bgcolor200">
+                <!-- <th class="align-c">date</th> -->
+                <th class="align-l">date</th>
+                <!-- <th class="align-l ">time</th> -->
+                <th class="align-l">productivity</th>
+                <!-- <th class="align-r">census</th> -->
+
+
+              </tr>
+              <tr ng-repeat="detail in showresult  | orderBy:['-date']">
+                <!-- <td class="align-c">{{detail.ndate}}</td> -->
+                <td class="align-l">{{detail.date}}</td>
+                <!-- <td class="align-l">{{detail.time}}</td> -->
+                <td class="align-l">{{detail.product| number:2}}</td>
+                <!-- <td class="align-r">{{detail.count}}</td> -->
+
+
+              </tr>
+            </table>
+            <!-- <table class="table table-striped table-condensed table-hover  ">
+              <tr ng-if="$index == 0" ng-repeat="detail in templatetable">
+                <th class="align-c marginleft15 width-100" ng-repeat="(key, value) in detail">{{key}}</th>
+              </tr>
+              <tr ng-repeat="detail in templatetable ">
+                <td class="align-c marginleft15 width-100" ng-repeat="(key, value) in detail">{{value}}</td>
+              </tr>
+            </table> -->
+            <!-- <table class="table table-striped table-condensed table-hover font13 ">
+              <tr>
+                <th class="align-l">date</th>
+                <th class="align-c">productivity</th>
+                <th class="align-c">require hrs</th>
+                <th class="align-c">staff hrs</th>
+              </tr>
+              <tr ng-repeat="detail in showdata">
+                <td class="align-l" ">{{detail.ndate | date : "dd/MM/y" }}</td>
+                          <td class=" align-c">{{detail.pro | number:2}}</td>
+                <td class="align-c">{{detail.req_hrc | number:2}}</td>
+                <td class="align-c">{{detail.staffHr | number:2}}</td>
+
+              </tr>
+            </table> -->
+          </div>
+        </div>
+
+      </md-card>
+
+    </md-content>
+  </div>
+  </div>
+</form>

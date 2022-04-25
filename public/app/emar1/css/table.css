@@ -1,0 +1,14 @@
+td.fth-header, th.fth-header,
+td.fth-footer, th.fth-footer {
+border-top: none !important;
+border-bottom: 1px solid #ddd;
+}
+td.fth-header, th.fth-header {
+background-color: #3D7083;
+color: white;
+}
+td.fth-footer, th.fth-footer {
+background-color: #4F90A8;
+color
+: white;
+}

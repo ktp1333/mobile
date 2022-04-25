@@ -1,0 +1,225 @@
+html {
+  overflow: hidden;
+}
+.d1 {
+  width: 98%;
+  min-height: 98vH;
+  max-height: 98vH;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  /* border:solid 1px gray; */
+  margin-left: 3px;
+  text-align: left;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+.heightitlemenu {
+  min-height: 20px;
+  max-height: 20px;
+} 
+.width100 {
+  /* display: flex; */
+  /* justify-content: center; */
+  min-width: 97% !important;
+  max-width: 97% !important;
+  /* min-width: 160px;
+  max-width: 160px; */
+}
+.width350 {
+  /* display: block; */
+  min-width: 350px;
+  max-width: 350px;
+}
+.width250 {
+  /* display: block; */
+  min-width: 250px;
+  max-width: 250px;
+}
+.width600 {
+  /* display: block; */
+  min-width: 600px;
+  max-width: 600px;
+}
+.marginleft15 {
+  margin-left: 15px;
+}
+.margintop15 {
+  margin-top: 15px;
+}
+
+.div_show {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  /* border:solid 1px gray; */
+
+  box-shadow: 2px 2px 2px 2px #888888;
+  margin-right: 2px;
+  margin-left: 2px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-right: 80px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+
+.align-c {
+  text-align: center !important;
+}
+.align-l {
+  text-align: left !important;
+}
+.align-r {
+  text-align: right !important;
+}
+
+.collapse {
+  /* text-align: center; */
+  border: 0px solid #BFBFBF;
+  border-collapse: collapse;
+  padding: 10px 10px 15px 10px;
+  padding: 0px !important;
+  margin-top: 0px !important;
+  display: block;
+  /* min-height: 35vH;
+  max-height: 35vH; */
+  /* overflow-y: scroll; */
+}
+.pad2 {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.pad5 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.pad7 {
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+.heightfull {
+  min-height: 87vH !important;
+  max-height: 87vH !important;
+}
+.btnheight {
+  padding-top: 1vH;
+height: 8vH !important;
+}
+.height10 {
+  min-height: 10vH !important;
+  max-height: 10vH !important;
+}
+.height90 {
+  min-height: 90vH !important;
+  max-height: 90vH !important;
+}
+  .height100 {
+    min-height: 100vH !important;
+    max-height: 100vH !important;
+  }
+  .width100 {
+    min-width: 100vW !important;
+    max-width: 100vW !important;
+  }
+  .widthfullpage {
+    min-width: 80vW !important;
+    max-width: 80vW !important;
+  }
+  .heightfullpage {
+    min-height: 88vH !important;
+    max-height: 88vH !important;
+  }
+  .width50 {
+    min-width: 50vW !important;
+    max-width: 50vW !important;
+  }
+  .img1 {
+    width: 35vW ;
+  }
+  .img2 {
+    width: 50vW ;
+  }
+  .rectangle {
+    /* display: block; */
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 150px;
+    max-height: 150px;
+  }
+
+  
+.div_button {
+ 
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+.widthgraph1 {
+  min-width: 400px !important;
+  max-width: 400px !important;
+}
+.btn1 {
+  border-radius: 31px;
+  background: #f5f5f5;
+  box-shadow:  41px 41px 82px #d8d7d7,
+               -41px -41px 82px #ffffff;
+}
+   .btn2{
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4.0px );
+    -webkit-backdrop-filter: blur( 4.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+ }
+ .btn3 {
+  border-radius: 31px;
+  background: #39a9dd;
+  box-shadow:  41px 41px 82px #39a9dd,
+               -41px -41px 82px #ffffff;
+}
+.mybutton1 {
+  border-radius: 31px;
+  background: #8fd2f1b9;
+  box-shadow:  41px 41px 82px #dcdddd,
+               -41px -41px 82px #ffffff;
+  padding : 2vw 2vw 2vw 2vw ;
+  margin-top : 1vh;
+
+}
+.myheader1 {
+  background: rgba( 217, 217, 217, 0.25 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  padding : 2vw 2vw 2vw 2vw ;
+  margin-top : 1vh;
+
+}
+.glass2 {
+  background: rgba( 157, 155, 155, 0.45 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 9.0px );
+-webkit-backdrop-filter: blur( 9.0px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+ .padall3vW {
+  padding : 3vw 3vw 3vw 3vw ;
+}
+.width_column1 {
+  min-width: 8rem;
+  max-width: 8rem;
+}
+.width_column2 {
+  min-width: 5rem;
+  max-width: 5rem;
+}

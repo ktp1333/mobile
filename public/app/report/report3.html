@@ -1,0 +1,30 @@
+<form id="show_report3">
+  <div ng-if="show_report3">
+    <div class="align-c">
+      <md-button class="md-raised font-white1 width-400 bgcolor800">
+        report daily {{ward}}
+      </md-button>
+      <md-button class="md-raised font-white1 width-150 bgcolor800" ng-click="show_period()">
+       show by period
+      </md-button>
+    </div>
+
+    <div class="panel-body collapse" runat="server" style="overflow-y:scroll; ">
+      <table class="table table-hover">
+        <tr class="bgcolor200">
+          <th class="align-c">date</th>
+          <th class="align-r">Require hour</th>
+          <th class="align-r">Staff hour</th>
+          <th class="align-r">Productivity</th>
+        </tr>
+        <tr ng-repeat="detail in result | orderBy:'-date'">
+          <td class="align-c">{{detail.ndate}}</td>
+          <td class="align-r">{{detail.req_hrc | number:2}}</td>
+          <td class="align-r">{{detail.staffHr | number:2}}</td>
+          <td class="align-r">{{detail.pro| number:2}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  </div>
+</form>

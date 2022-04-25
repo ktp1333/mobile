@@ -1,0 +1,309 @@
+.c3-region.regionY {
+  fill: green;
+}
+.c3-region.regionY2 {
+  fill: rgb(8, 199, 8);
+}
+      .dimage {
+        width: 100%!important;
+        /* min-width: 15vH;
+        max-width: 15vH; */
+        min-height: 25vH;
+        max-height: 25vH;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        /* border:solid 1px gray; */
+        margin-left: 3px;
+        text-align: left;
+      }
+  .d1 {
+  /* display: block; */
+  overflow-y: scroll!important;
+  height:4000px;
+  }
+
+  .d2 {
+    float: left;
+     height: 15em; 
+     margin-right: 1%; 
+     margin-bottom: 0.5em;
+  }
+  .d3 {
+    text-align: center!important;
+  }
+  .bgred {
+    background-color: rgb(221, 48, 42) !important;
+  }
+  .bggreen {
+    background-color: rgb(14, 143, 121) !important;
+  }
+  .div1 {
+    /* position: relative; */
+    /* left: 100px; */
+    /* float:left!important; */
+    width:97%;
+    /* height:80%; */
+    /* border:solid 2px white;  */
+    /* text-align:left!important; */
+
+    float:left;
+    margin-right:2vW;
+    /* border:solid 2px green; */ 
+    text-align:center;
+    margin-top: 40px !important;
+}
+.div2 {
+    float:right;
+    margin-right: 2vW;
+    /* border:solid 2px green; */ 
+    text-align:center;
+}
+
+
+
+.container {
+    display: flex;
+    justify-content: center;
+  }
+       
+  .width100 {
+    /* display: flex; */
+    justify-content: center;
+    text-align: center;
+    min-width:100%;
+    max-width:100%;
+  }
+  .width2vW {
+    min-width:2vW;
+    max-width:2vW;
+  }
+  .width3vW {
+    min-width:2.5vW;
+    max-width:2.5vW;
+  }
+  .width7vW {
+    min-width:7vW;
+    max-width:7vW;
+  }
+  .width10vW {
+    min-width:10vW;
+    max-width:10vW;
+  }
+  .width13vW {
+    min-width:13vW;
+    max-width:13vW;
+  }
+  .width15vW {
+    min-width:15vW;
+    max-width:15vW;
+  }
+  .width17vW {
+    min-width:17vW;
+    max-width:17vW;
+  }
+  .width20vW {
+    min-width:20vW;
+    max-width:20vW;
+  }
+  .width25vW {
+    min-width:25vW;
+    max-width:25vW;
+  }
+  .width30vW {
+    min-width:30vW;
+    max-width:30vW;
+  }
+  .width40vW {
+    min-width:40vW !important;
+    max-width:40vW !important;
+  }
+  .width45vW {
+    min-width:45vW !important;
+    max-width:45vW !important;
+  }
+  .width50vW {
+    min-width:50vW !important;
+    max-width:50vW !important;
+  }
+  .width85vW {
+    min-width:85vW !important;
+    max-width:85vW !important;
+  }
+  .width60vW {
+    min-width:62vW !important;
+    max-width:62vW !important;
+  }
+  .width70p {
+    min-width:70% !important;
+    max-width:70% !important;
+  }
+  .width90p {
+    min-width:90% !important;
+    max-width:90% !important;
+  }
+  .width97p {
+    min-width:97% !important;
+    max-width:97% !important;
+  }
+  .width100p {
+    min-width:100% !important;
+    max-width:100% !important;
+  }
+  .width60p {
+    min-width:60% !important;
+    max-width:60% !important;
+  }
+  .width20p {
+    min-width:20% !important;
+    max-width:20% !important;
+  }
+    .marginleft100 {
+    margin-left: 100px;
+  }
+  .margintop1 {
+    margin-top: 2vH;
+  }
+  .margintop2 {
+    margin-top: 5vH;
+  }
+  .margin0 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .align-c {
+    text-align: center !important;
+  }
+  .align-l {
+    text-align: left !important;
+  }
+  .align-r {
+    text-align: right !important;
+  }
+  .marginleft15 {
+    /* margin-left: 2vW !important; */
+    /* display: block; */
+    margin-left: 1vW;
+  }
+
+  .marginright15 {
+    /* margin-left: 2vW !important; */
+    /* display: block; */
+    margin-right: 1vW;
+  }
+  .margintop1 {
+    /* margin-left: 2vW !important; */
+    /* display: block; */
+    margin-top: 1.5vW;
+  }
+  .margin15 {
+    margin-left: 1vW !important;
+    margin-top: 1vW !important;
+    margin-bottom: 1vW !important;
+    margin-right: 1vW !important;
+  }
+  .margin5 {
+    margin-left: 0vW !important;
+    margin-top: 0.5vW !important;
+    margin-bottom: 0.5vW !important;
+    margin-right: 0.5vW !important;
+  }
+  .pad0{
+    padding: 0 !important;
+    margin-left: 0.1vW !important;
+    margin-top: 0.1vW !important;
+    margin-bottom: 0.1vW !important;
+    margin-right: 0.1vW !important;
+  }
+  .square1 {
+    min-width:5vW !important;
+    max-width:5vW !important;
+    /* min-height:5vH !important;
+    max-height:5vH !important; */
+
+  }
+  .square2 {
+    min-width:8vW !important;
+    max-width:8vW !important;
+    min-height:13vH !important;
+    max-height:13vH !important;
+  }
+  .square3 {
+    min-width:6vW !important;
+    max-width:6vW !important;
+    min-height:6vH !important;
+    max-height:6vH !important;
+  }
+  .divradius {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+  .rect1 {
+    min-width:10vW !important;
+    max-width:10vW !important;
+    min-height:5vH !important;
+    max-height:5vH !important;
+  }
+  .rectangle1 {
+    min-width:73vW !important;
+    max-width:73vW !important;
+    min-height:17vH !important;
+    max-height:17vH !important;
+    padding-left: 1vW !important;
+    padding-top: 1vW !important;
+    padding-bottom: 1vW !important;
+    padding-right: 1vW !important;
+    margin-left: 1vW !important;
+    margin-top: 1vW !important;
+    margin-bottom: 1vW !important;
+    margin-right: 1vW !important;
+  }
+  .rectangle0 {
+    min-width:20vW !important;
+    max-width:20vW !important;
+    min-height:17vH !important;
+    max-height:17vH !important;
+    padding-left: 1vW !important;
+    padding-top: 1vW !important;
+    padding-bottom: 1vW !important;
+    padding-right: 1vW !important;
+    margin-left: 1vW !important;
+    margin-top: 1vW !important;
+    margin-bottom: 1vW !important;
+    margin-right: 1vW !important;
+  }
+  .height20vH {
+    min-height:20vH !important;
+    max-height:20vH !important;
+  }
+  .height25vH {
+    min-height:25vH !important;
+    max-height:25vH !important;
+  }
+  .height30vH {
+    min-height:30vH !important;
+    max-height:30vH !important;
+  }
+  .margin2{
+    margin: 2vH !important;
+  }
+  .margin4{
+    margin: 4vH !important;
+  }
+  .paddingtd{
+    padding: 1px  1px  1px  1px !important;
+  }
+  .paddingbtn{
+    padding: 1px  1px  1px  1px !important;
+  }
+  .paddingheader{
+    padding-left: 0.8vW !important;
+    padding-right: 1.2vW !important;
+  }
+  .margintop1{
+    margin-top: 1vW !important;
+    margin-left: 1.5vW !important;
+  }

@@ -1,0 +1,52 @@
+<html ng-app="myApp" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+  <title>Emar</title>
+  <meta name="apple-mobile-web-app-title" content="HCC" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="description" content="">
+  <meta name="viewport"
+    content="width = device-width, initial-scale = 1.0, minimum-scale = 1, maximum-scale = 3, user-scalable = no" />
+  <link rel="icon" sizes="192x192" href="chart.png">
+  <link href="https://fonts.googleapis.com/css?family=Anton|Roboto+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.17/angular-filter.min.js"></script>
+  <link rel="stylesheet" href="../../app/search/assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../app/search/assets/font-awesome/css/font-awesome.min.css">
+  <script src="../../bower_components/angular/angular-route.min.js"></script>
+  <script src="../../app/search/assets/js/jquery-1.11.1.min.js"></script>
+  <script src="../../app/search/assets/bootstrap/js/bootstrap.min.js"></script>
+
+  <script src="../../template/moment/moment.min.js"></script>
+  <script src="../../bower_components/bootstrap/ui-bootstrap-tpls-0.10.0.min.js"></script>
+  <script type="text/javascript" src="../../bower_components/async/dist/async.min.js"></script>
+  <script src="../../bower_components/underscore/underscore.js"></script>
+  <link rel="stylesheet" href="../../app/emar/css/div.css">
+  <link rel="stylesheet" href="../../app/emar/css/csscolor_bluegray.css">
+  <link rel="stylesheet" href="../../app/emar/css/font.css">
+  <link rel="stylesheet" href="../../app/emar/css/button.css">
+  <link rel="stylesheet" href="../../app/emar/css/table.css">
+  <!-- <script src="https://code.jquery.com/jquery-2.2.4.js"></script> -->
+  <script src="../app/emar/emar.controller.js"></script>
+
+  <script type="text/javascript" src="../../app/app.factory.js"></script>
+  <script src="../../bower_components/underscore/underscore.js"></script>
+
+</head>
+
+
+<body ng-controller="emarController as vm" class="bgcolor100">
+  <!-- <div ng-include="'../../app/emar/menu.html'"></div> -->
+  <div style="display:flex; flex-direction:row ;overflow-y: hidden;">
+    <div style=" width:100%;min-height:98vH;max-height:98vH;" ng-include="'../../app/emar/show.html'"></div>
+  </div>
+</body>
+
+</html>

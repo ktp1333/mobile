@@ -1,0 +1,136 @@
+.fontgray{
+  color:rgb(161, 160, 160) !important;
+}
+.fontred{
+  color:rgb(250, 8, 8) !important;
+}
+.fontgreen{
+  color:rgb(14, 165, 140) !important;
+}
+.fontblue{
+  color:rgb(66, 53, 124) !important;
+}
+.fontwhite{
+  color:rgb(255, 255, 255) !important;
+}
+.fonts {
+  font-family: 'Roboto Mono', serif !important;
+  font-size: 0.8em !important;
+  
+}
+.fontn {
+  font-family: 'Roboto Mono', serif !important;
+  font-size: 1em !important;
+}
+.fontm {
+  font-family: 'Roboto Mono', serif !important;
+  font-size: 1.3em !important;
+}
+.fontl {
+  font-family: 'Roboto Mono', serif !important;
+  font-size: 1.7em !important;
+  
+}
+.fontxl {
+  font-family: 'Roboto Mono', serif !important;
+  font-size: 2.4em !important;
+  
+}
+.fontxxl {
+  font-family: 'Roboto Mono', serif !important;
+  font-size: 3.5em !important;
+  
+}
+.fontgray{
+  color:rgb(161, 160, 160) !important;
+}
+.fontbold{
+  font-style: bold !important;
+}
+
+    .font-08em {
+      font-family: 'Roboto Mono',tahoma, serif !important;
+      font-size: 0.8em !important;
+      
+    }
+    .font-1em {
+      font-family: 'Roboto Mono',tahoma, serif !important;
+      font-size: 1em !important;
+      
+    }
+    .font-2em {
+      font-family: 'Roboto Mono', serif !important;
+      font-size: 2em !important;
+      
+    }
+
+    .font-15em {
+      font-family: 'Roboto Mono', serif !important;
+      font-size: 1.5em !important;
+      
+    }
+    .font-head {
+      font-family: 'Roboto Mono', serif !important;
+      font-size: 1.5em !important;
+      
+      color:rgb(222, 236, 234);
+      margin-left: 3vW !important;
+    }
+    .font-white {
+      color:rgb(238, 238, 238) !important;
+    }
+    .font-gray8 {
+      font-family: 'Roboto Mono', serif !important;
+      font-size: 0.8em !important;
+      
+      color:rgb(140, 141, 141);
+      /* margin-left: 3vW !important; */
+    }
+    .font-grey1 {
+      font-family: 'Roboto Mono',tahoma, serif !important;
+      font-size: 1em !important;
+      
+      color:rgb(95, 95, 95);
+    }
+    .font-grey2 {
+      font-family: 'Roboto Mono',tahoma, serif !important;
+      font-size: 1em !important;
+      
+      color:rgb(134, 134, 134);
+    }
+    .font-red8 {
+      font-family: 'Roboto Mono', serif !important;
+      font-size: 0.8em !important;
+      
+      color:rgb(247, 66, 66);
+      /* margin-left: 3vW !important; */
+    }
+    .font-blue {
+      font-family: 'Roboto Mono', serif !important;
+      font-size: 1em !important;
+      
+      color:rgb(46, 49, 206);
+      /* margin-left: 3vW !important; */
+    }
+
+    .fontblack12 {
+      font-family: 'Roboto Mono', serif !important;
+      font-size: 1.2em !important;
+      
+      color:rgb(12, 12, 12);
+
+    }
+        .font-dg15 {
+      font-family: 'Roboto Mono', serif !important;
+      font-size: 1.5em !important;
+      
+      color:rgb(14, 104, 32);
+      /* margin-left: 3vW !important; */
+    }
+    .font-grey08 {
+      font-family: 'Roboto Mono', serif !important;
+      font-size: 0.8em !important;
+      
+      color:rgb(188, 189, 189);
+      /* margin-left: 3vW !important; */
+    }

@@ -1,0 +1,108 @@
+.btn1 {
+  color : rgb(49, 46, 46);
+  background-color: rgba(236, 235, 231, 0.96);
+  /* border-radius: 10px 0 0 10px; */
+  border-radius: 3px;
+  /* font-size: 16px; */
+  margin: 0px  0px  0px  0px;
+
+}
+.btn1:not([disabled]):hover {
+  background-color: rgba(107, 103, 91, 0.96);
+  color: white;
+}
+
+.btn1[disabled] {
+  color : rgb(187, 187, 187);
+  background-color: rgba(230, 230, 229, 0.96);
+}
+
+.btn2 {
+  color : rgb(49, 46, 46);
+  background-color: rgba(255, 222, 121, 0.96);
+  /* border-radius: 10px 0 0 10px; */
+  border-radius: 3px;
+  /* font-size: 16px; */
+  margin: 0px  0px  0px  0px;
+
+}
+.btn2:not([disabled]):hover {
+  background-color: rgba(107, 103, 91, 0.96);
+  color: white;
+}
+
+.btn2[disabled] {
+  color : rgb(187, 187, 187);
+  background-color: rgba(230, 230, 229, 0.96);
+}
+.btn22 {
+  color : rgb(49, 46, 46);
+  background-color:  rgba(238, 182, 14, 0.96);
+  /* border-radius: 10px 0 0 10px; */
+  border-radius: 3px;
+  color: rgb(27, 114, 56);
+  /* font-size: 16px; */
+  margin: 0px  0px  0px  0px;
+  background-image: url("../../image/redcross.png");
+  background-repeat: no-repeat;
+  background-size: 50% 50%;
+  background-position: center center;
+}
+.btn3 {
+  color : rgb(49, 46, 46);
+  background-color: rgba(152, 250, 193, 0.952);
+  /* border-radius: 10px 0 0 10px; */
+  border-radius: 3px;
+  color: rgb(59, 87, 212);
+  /* font-size: 16px; */
+  margin: 0px  0px  0px  0px;
+}
+.btn3:not([disabled]):hover {
+  background-color: rgba(107, 103, 91, 0.96);
+  color: white;
+}
+
+.btn3[disabled] {
+  color : rgb(187, 187, 187);
+  background-color: rgba(230, 230, 229, 0.96);
+}
+.btn33 {
+  color : rgb(49, 46, 46);
+  background-color: rgba(25, 102, 57, 0.952);
+  /* border-radius: 10px 0 0 10px; */
+  border-radius: 3px;
+  color: rgb(59, 87, 212);
+  /* font-size: 16px; */
+  margin: 0px  0px  0px  0px;
+  /* background-image: url("../../image/redcross.png"), url("../../image/chart.png"); */
+  background-image: url("../../image/redcross02.png");
+  background-repeat: no-repeat;
+  background-size: 50% 50%;
+  background-position: center center;
+  /* background-color: rgb(244, 244, 245); */
+    /* background-blend-mode: darken; */
+
+  /* background-image: url("../../image/redcross.png"); fallback for older browsers */
+/* background-image: linear-gradient(to bottom, rgba(248, 244, 244, 0.0) 0%,rgba(207, 204, 204, 0.6) 100%), url("../../image/redcross.png"); */
+  
+}
+
+.btn4 {
+  color : rgb(255, 255, 253);
+  background-color: rgba(70, 53, 146, 0.96);
+  /* border-radius: 10px 0 0 10px; */
+  border-radius: 3px;
+  /* font-size: 16px; */
+  margin: 0px  0px  0px  0px;
+
+}
+.btn4:not([disabled]):hover {
+  background-color: rgba(107, 103, 91, 0.96);
+  color: white;
+}
+
+.btn4[disabled] {
+  color : rgb(187, 187, 187);
+  background-color: rgba(230, 230, 229, 0.96);
+}
+       

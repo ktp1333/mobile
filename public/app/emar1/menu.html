@@ -1,0 +1,101 @@
+<html>
+
+<head>
+  <title></title>
+</head>
+
+<!-- <body style="background-color: white;"> -->
+  <body class="bgcolor100">
+  <form name="myForm" id="menu_form" class="form-horizontal" role="form">
+    <div layout="column" style="height: auto !important;" ng-cloak>
+      <section layout="row" flex>
+        <md-sidenav class="bgcolor100" md-component-id="left" md-disable-backdrop md-whiteframe="4">
+          <md-toolbar class="md-theme-indigo ">
+            <h1 class="md-toolbar-tools bgcolor700">
+              <md-button class="md-icon-button" aria-label="Favorite" ng-click="toggleLeft()">
+                <md-icon ng-bind="'fast_rewind'"></md-icon>
+              </md-button>
+              <p>Choose HN
+                <!-- <button type="text" class="btn btn-primary " ng-click="addnewpatient()">
+                  <span class="glyphicon glyphicon-floppy-save"></span>
+                </button> -->
+              </p>
+            </h1>
+          </md-toolbar>
+          <form name="myForm" id="rightform" class="form-horizontal" role="form">
+            <!-- <md-content flex layout-padding>
+              <input type="date" class="form-control width100" id="datepicger" ng-model="dtp.value" min="2016-01-01" required />
+              <input type="text" name="tdate" class="form-control" value="{{dtp.value}}" ng-hide="true" />
+            </md-content> -->
+            <!-- <md-select class="dd1" ng-model="selectmonth">
+                  <md-option ng-repeat="x in months" ng-selected="x.monthID === selectmonth" value="{{x.monthID}}">
+                    {{x.monthdesc}}
+                  </md-option>
+                </md-select>
+                <md-select class="dd1" ng-model="selectyear">
+                  <md-option ng-repeat="x in years" ng-selected="x.yearID === 'selectyear" value="{{x.yearID}}">
+                    {{x.yeardesc}}
+                  </md-option>
+                </md-select> -->
+            <md-content flex layout-padding>
+              <input type="text" name="HN" class="form-control width100" placeholder="HN" ng-model="HN" value=" " autofocus />
+            </md-content>
+
+
+            <md-button class="md-raised md-warn md-hue-1" ng-click="selectdata(HN)" title="Show" style="width:180px;">Choose</md-button>
+
+
+          </form>
+        </md-sidenav>
+        <md-content flex layout-padding>
+          <div layout="row" layout-align="top left">
+
+            <md-button ng-click="refreshmenu()" class="md-raised" style="width:100px;">
+              <md-icon ng-bind="'fast_forward'"></md-icon>
+            </md-button>
+            <!-- <div ng-if="show_dermo" class="font-07" layout-align="right">
+              HN: {{HN}}
+              <Br>Name: {{title}} {{patientname}}
+              <Br> DOB: {{dob}}
+              <Br> Age: {{age}}
+              <Br>Gender: {{gender}} Address: {{address}}
+            </div>
+            
+            <div ng-if="showpict=='Y'">
+              <img class="img1" src="{{patientphoto}}" alt="No picture found">
+            </div>
+            <div ng-if="showpict=='N'">
+              <img class="img1" src="template/img/nopeople.png" alt="No picture found">
+            </div> -->
+
+            <md-button ng-click="report1()" class="md-raised" style="width:100px;">
+              DM
+            </md-button>
+            <md-button ng-click="report2()" class="md-raised" style="width:100px;">
+              CVS
+            </md-button>
+            <!-- <md-button ng-click="report3()" class="md-raised" style="width:100px;">
+              report3
+            </md-button>
+            <md-button ng-click="report4()" class="md-raised" style="width:100px;">
+              report4
+            </md-button>
+            <md-button ng-click="report5()" class="md-raised" style="width:100px;">
+              report5
+            </md-button> -->
+
+          </div>
+
+          <!-- <md-button  class="md-raised" style="width:100px;">
+                <a href="/index_p5#?ward={{warddesc}}" target="_blank" class="w3-button w3-teal w3-border w3-round-large " style="width:100px;"
+                  role="button">Report</a>
+              </md-button> -->
+
+        </md-content>
+      </section>
+    </div>
+  </form>
+
+</body>
+
+</html>

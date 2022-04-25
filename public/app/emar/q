@@ -1,0 +1,19 @@
+
+Registered 1 R
+Arrived 2 I
+Screening Completed 3 I
+Consultation Started 4 I
+Consultation Completed 5 I
+Under Observation 6 O
+Medical Discharge 7 D
+Billing Inprogress 8 B
+Bill Finalized 9 BF
+Financial Discharge 10 F
+Triaged null T
+
+medication
+ตั้งแต่แพทย์ order order status จะเป็น Registered
+เมื่อเภสัชจัดยา ตรวจสอบเสร็จจะเป็น allocate ต้อง allocate ทุกรายการจึงถือว่าจัดเสร็จ
+หลังผู้ป่วยจ่ายเงิน financial discharege จึงมารับยา
+เมื่อรับยาจะกด dispense
+

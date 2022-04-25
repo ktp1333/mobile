@@ -1,0 +1,212 @@
+<form id="r4" ng-if="show_report4">
+  <!-- <div class="container">
+    <div class="jumbotron" ng-if="mlabel != ''">
+      <h1> {{mlabel}}</h1> 
+    </div>
+  </div> -->
+  <style>
+    .table tr:last-child {
+    background-color:#ccc;
+ }
+</style>
+  <div style="display:flex; flex-direction:row">
+    <div style=" width: 20%; flex:1 1 auto;">
+      <div class="panel panel-info">
+        <div class="panel-body bgcolorwhite align-c" runat="server">
+          <!-- <md-content flex layout-padding>
+            <input type="date" class="form-control   align-c" id="datepicger" ng-model="dtp.value" min="2016-01-01"
+              required />
+            <input type="text" name="tdate" class="form-control align-c" value="{{dtp.value}}" ng-hide="true" />
+          </md-content> -->
+          <!-- <div>Ward :
+            <select name="repeatSelect" class="form-control" id="repeatSelect" ng-model="x.Ward" autofocus>
+              <option ng-repeat="x in warddesc" value="{{x.Ward}}">{{x.Ward}}</option>
+            </select>
+            <input type="text" class="form-control" name="Ward" value="{{x.repeatSelect}}" ng-hide="true" required />
+          </div> -->
+          <div>เวร :
+            <select name="repeatSelec2t" class="form-control" id="repeatSelect2" ng-model="y._id" autofocus>
+              <option ng-repeat="y in nursetimes" value="{{y._id}}">{{y.timeact}}</option>
+            </select>
+            <input type="text" class="form-control" name="_id" value="{{y._id}}" ng-hide="true" required />
+          </div>
+          <Br>
+          <md-button class="md-raised " ng-click="selectrep4(y._id)">Choose</md-button>
+
+          <div ng-if="img_waiting" class="align-c" style="margin-top: 4vH">
+            <img  src="app/image/loading.gif" style="width:100px">
+            <div class="alert alert-warning">
+              <strong> โปรดรอสักครู่</strong>
+            </div>
+          </div>
+          <!-- <Br>
+          <div>time :
+            <input type="text" class="form-control" ng-model="vm.mtime"   >
+          </div>
+        <md-button class="md-raised " ng-click="caldate(vm.mtime)"  style="width:180px;">cal date</md-button> -->
+        </div>
+      </div>
+    </div>
+
+
+    <div style=" width: 73%;flex:1 1 auto;">
+      <div class="panel panel-info dd">
+        <div class="panel-heading">
+          ข้อมูล ช่วงเวลา {{timedesc}}
+          site : {{selectsite}} : ข้อมูล ช่วงเวลา {{timedesc}}{{today}}
+        </div>
+
+        <div class="panel-body" >
+          <div align="left">
+            <!-- <div class="panel-body " runat="server" style="height:100%;width:100%; "> -->
+              <!-- <div class="align-c"> -->
+                <!-- <md-button class="md-raised font-white1 width-250 bgcolor800" ng-click="show_daily4()">
+                  report daily
+                </md-button>
+                <md-button class="md-raised font-white1 width-250 bgcolor800" ng-click="show_all4()">
+                  Sum all
+                </md-button> -->
+              <!-- </div> -->
+             <!-- {{show_table4}} -->
+              <div class="panel-body collapse " runat="server" style=width:95%;overflow-x:hidden;overflow-y:hidden;
+                ng-show="show_table4">
+                <md-button class="md-raised font-white1 width-250 bgcolor800" ng-click="R2()">
+                  Patient classification
+                </md-button>
+                <md-button class="md-raised font-white1 width-150 bgcolor800" ng-click="R1()">
+                  Quality
+                </md-button>
+                <md-button class="md-raised font-white1 width-150 bgcolor800" ng-click="json2xls('gdayinmonth')">
+                  export to excel
+                </md-button>
+                
+
+                <table class="table table-hover"  ng-show="showR1">
+                  <tr class="bgcolor200">
+                    <td colspan="1" class="align-c">
+
+                    </td>
+                    <td colspan="5" class="align-c bgcolor100">
+                      Isolation
+                    </td>
+                    <td colspan="10"></td>
+                  </tr>
+                  <tr class="bgcolor200">
+                    <td class="align-c">date</td>
+                    <td class="align-c bgcolor100">Drug/resistance </td>
+                    <td class="align-r bgcolor100">Droplet </td>
+                    <td class="align-r bgcolor100">Airborne </td>
+                    <td class="align-r bgcolor100">Contact </td>
+                    <td class="align-r bgcolor100">Reverse </td>
+                    <td class="align-r">fall</td>
+                    <td class="align-r">ivf</td>
+                    <td class="align-r">aline</td>
+                    <td class="align-r">cline</td>
+                    <td class="align-r">heplock</td>
+                    <td class="align-r">foley</td>
+                    <td class="align-r">et</td>
+                    <td class="align-r">wound</td>
+                    <td class="align-r">bedsore</td>
+                    <td class="align-r">drain</td>
+                  </tr>
+                  <tr ng-repeat="detail in gdayinmonth | orderBy:'date'">
+                    <td class="align-c">{{detail.date}}</td>
+                    <td class="align-c">{{detail.isolation1 | number:0}}</td>
+                    <td class="align-r">{{detail.isolation2 | number:0}}</td>
+                    <td class="align-r">{{detail.isolation3 | number:0}}</td>
+                    <td class="align-r">{{detail.isolation4 | number:0}}</td>
+                    <td class="align-r">{{detail.isolation5 | number:0}}</td>
+                    <td class="align-r">{{detail.fall | number:0}}</td>
+                    <td class="align-r">{{detail.ivf | number:0}}</td>
+                    <td class="align-r">{{detail.aline | number:0}}</td>
+                    <td class="align-r">{{detail.cline | number:0}}</td>
+                    <td class="align-r">{{detail.heplock | number:0}}</td>
+                    <td class="align-r">{{detail.foley | number:0}}</td>
+                    <td class="align-r">{{detail.et | number:0}}</td>
+                    <td class="align-r">{{detail.wound | number:0}}</td>
+                    <td class="align-r">{{detail.bedsore | number:0}}</td>
+                    <td class="align-r">{{detail.drain | number:0}}</td>
+                  </tr>
+                </table>
+                <table class="table table-hover" ng-show="showR2">
+                  <tr class="bgcolor200">
+                    <td colspan="1" class="align-c">
+      
+                    </td>
+                    <td colspan="5" class="align-c bgcolor100">
+                      Patient classification
+                    </td>
+                    <!-- <td colspan="9"></td> -->
+                  </tr>
+                  <tr class="bgcolor200">
+                    <td class="align-c">ward</td>
+                    <td class="align-c bgcolor100">class 1 </td>
+                    <td class="align-r bgcolor100">class 2 </td>
+                    <td class="align-r bgcolor100">class 3 </td>
+                    <td class="align-r bgcolor100">class 4 </td>
+                    <td class="align-r bgcolor100">class 5 </td>
+      
+                  </tr>
+                  <tr ng-repeat="detail in gdayinmonth | orderBy:'date'">
+                    <td class="align-c">{{detail.date}}</td>
+                    <td class="align-c">{{detail.classification1 | number:0}}</td>
+                    <td class="align-r">{{detail.classification2 | number:0}}</td>
+                    <td class="align-r">{{detail.classification3 | number:0}}</td>
+                    <td class="align-r">{{detail.classification4 | number:0}}</td>
+                    <td class="align-r">{{detail.classification5 | number:0}}</td>
+      
+                  </tr>
+                </table>
+              </div>
+              <div class="panel-body collapse " runat="server" style=height:90%;overflow-x:auto;overflow-y:scroll;
+                ng-show="show_table42">
+
+
+                <table class="table table-hover">
+                  <tr class="bgcolor200">
+                    <th class="align-c">date</th>
+                    <th class="align-c">Drug/resistance </th>
+                    <th class="align-r">Droplet </th>
+                    <th class="align-r">Airborne </th>
+                    <th class="align-r">Contact </th>
+                    <th class="align-r">Reverse </th>
+                    <th class="align-r">fall</th>
+                    <th class="align-r">ivf</th>
+                    <th class="align-r">aline</th>
+                    <th class="align-r">cline</th>
+                    <th class="align-r">heplock</th>
+                    <th class="align-r">foley</th>
+                    <th class="align-r">et</th>
+                    <th class="align-r">wound</th>
+                    <th class="align-r">bedsore</th>
+                    <th class="align-r">drain</th>
+                  </tr>
+                  <tr ng-repeat="detail in allmonth | orderBy:'date'">
+                    <td class="align-c">{{detail.date}}</td>
+                    <td class="align-c">{{detail.isolation1 | number:0}}</td>
+                    <td class="align-r">{{detail.isolation2 | number:0}}</td>
+                    <td class="align-r">{{detail.isolation3 | number:0}}</td>
+                    <td class="align-r">{{detail.isolation4 | number:0}}</td>
+                    <td class="align-r">{{detail.isolation5 | number:0}}</td>
+                    <td class="align-r">{{detail.fall | number:0}}</td>
+                    <td class="align-r">{{detail.ivf | number:0}}</td>
+                    <td class="align-r">{{detail.aline | number:0}}</td>
+                    <td class="align-r">{{detail.cline | number:0}}</td>
+                    <td class="align-r">{{detail.heplock | number:0}}</td>
+                    <td class="align-r">{{detail.foley | number:0}}</td>
+                    <td class="align-r">{{detail.et | number:0}}</td>
+                    <td class="align-r">{{detail.wound | number:0}}</td>
+                    <td class="align-r">{{detail.bedsore | number:0}}</td>
+                    <td class="align-r">{{detail.drain | number:0}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</Form>

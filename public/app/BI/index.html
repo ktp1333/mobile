@@ -1,0 +1,605 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>BI</title>
+    <meta name="apple-mobile-web-app-title" content="BI" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="description" content="">
+    <meta name="viewport"
+        content="width = device-width, initial-scale = 1.0, minimum-scale = 1, maximum-scale = 3, user-scalable =yes" />
+    <link rel="icon" sizes="192x192" href="app/bi/k.gif">
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../../node_modules/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../node_modules/onsenui/css/onsenui.min.css" />
+    <link rel="stylesheet" href="../../node_modules/onsenui/css/onsen-css-components.min.css" />
+
+
+    <script type="text/javascript" src="../../node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/onsenui/js/onsenui.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/angular-material/angular-material.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/angular-aria/angular-aria.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/angular-messages/angular-messages.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/angular-filter/dist/angular-filter.min.js"></script>
+
+    <script type="text/javascript" src="../../node_modules/async/dist/async.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/angular-moment/angular-moment.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/angular-md5/angular-md5.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/angularjs-onsenui/dist/angularjs-onsenui.min.js"></script>
+    <!-- <script type="text/javascript" src="../../node_modules/underscore/underscore.js"></script> -->
+
+
+    <link href="../../template/bi/c3/c3.css" rel="stylesheet" type="text/css">
+    <script src="../../template/bi/d3/d3.min.js" charset="utf-8"></script>
+    <script src="../../template/bi/c3/c3.min.js"></script>
+    <link href="../../app/css/table.css" rel="stylesheet" type="text/css">
+    <link href="../../app/css/font.css" rel="stylesheet" type="text/css">
+    <link href="../../app/css/div.css" rel="stylesheet" type="text/css">
+    <link href="../../app/css/color.css" rel="stylesheet" type="text/css">
+    <link href="../../app/csslogin/styles.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
+    <!-- <link href="../css/div.css" rel="stylesheet" type="text/css"> -->
+    <script type="text/javascript" src="../../app/BI/bi.controller.js"></script>
+
+    <style>
+        .qr {
+            width: 600px;
+            border: 1px solid silver;
+        }
+
+        #qr-canvas {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body ng-app="app" ng-controller="biController">
+
+    <div>
+        <ons-splitter var="mySplitter" ng-controller="biController as bi">
+            <ons-splitter-side side="left" width="220px" collapse swipeable>
+                <ons-page>
+                    <ons-list class="fontm">
+                        <ons-list-item ng-click="mySplitter.left.close()" tappable>
+                            ..
+                        </ons-list-item>
+                        <ons-list-item ng-click="bi.load('login.html')" tappable>
+                            Home
+                        </ons-list-item>
+                        <ons-list-item ng-click="bi.load('menuopd.html')" tappable>
+                            OPD
+                        </ons-list-item>
+                        <ons-list-item ng-click="bi.load('menuipd.html')" tappable>
+                            IPD
+                        </ons-list-item>
+                        <ons-list-item ng-click="bi.load('menurevenue.html')" tappable>
+                            REVENUE
+                        </ons-list-item>
+                        <ons-list-item ng-click="bi.load('about.html')" tappable>
+                            About
+                        </ons-list-item>
+
+                    </ons-list>
+                </ons-page>
+            </ons-splitter-side>
+            <!-- <ons-splitter-content page="login.html"></ons-splitter-content> -->
+            <ons-splitter-content page="login.html"></ons-splitter-content>
+        </ons-splitter>
+
+
+
+        <template id="login.html">
+            <ons-page>
+                <ons-toolbar class=" bgfacebook">
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center ">
+                        <div class="fontgr1"> Realtime statistic
+                        </div>
+                    </div>
+                </ons-toolbar>
+                <ons-card class="align-c height100 " class="login-div">
+                    <div class="logo"></div>
+                    <div class="title">BI</div>
+                    <div class="sub-title"></div>
+                    <div class="fields">
+                        <!-- <div class="username"><svg fill="#999" viewBox="0 0 1024 1024"><path class="path1" d="M896 307.2h-819.2c-42.347 0-76.8 34.453-76.8 76.8v460.8c0 42.349 34.453 76.8 76.8 76.8h819.2c42.349 0 76.8-34.451 76.8-76.8v-460.8c0-42.347-34.451-76.8-76.8-76.8zM896 358.4c1.514 0 2.99 0.158 4.434 0.411l-385.632 257.090c-14.862 9.907-41.938 9.907-56.802 0l-385.634-257.090c1.443-0.253 2.92-0.411 4.434-0.411h819.2zM896 870.4h-819.2c-14.115 0-25.6-11.485-25.6-25.6v-438.566l378.4 252.267c15.925 10.618 36.363 15.925 56.8 15.925s40.877-5.307 56.802-15.925l378.398-252.267v438.566c0 14.115-11.485 25.6-25.6 25.6z"></path></svg><input type="username" class="user-input" placeholder="username" /></div> -->
+                        <div class="password"><svg fill="#999" viewBox="0 0 1024 1024">
+                                <path class="path1"
+                                    d="M742.4 409.6h-25.6v-76.8c0-127.043-103.357-230.4-230.4-230.4s-230.4 103.357-230.4 230.4v76.8h-25.6c-42.347 0-76.8 34.453-76.8 76.8v409.6c0 42.347 34.453 76.8 76.8 76.8h512c42.347 0 76.8-34.453 76.8-76.8v-409.6c0-42.347-34.453-76.8-76.8-76.8zM307.2 332.8c0-98.811 80.389-179.2 179.2-179.2s179.2 80.389 179.2 179.2v76.8h-358.4v-76.8zM768 896c0 14.115-11.485 25.6-25.6 25.6h-512c-14.115 0-25.6-11.485-25.6-25.6v-409.6c0-14.115 11.485-25.6 25.6-25.6h512c14.115 0 25.6 11.485 25.6 25.6v409.6z">
+                                </path>
+                            </svg><input type="password" class="pass-input" placeholder="password"
+                                ng-model="vm.loginid" /></div>
+                    </div>
+                    <button class="signin-button" ng-click="login(vm.loginid)">Login</button>
+
+                </ons-card>
+            </ons-page>
+        </template>
+        <template id="login_b.html">
+            <ons-page>
+                <ons-toolbar class=" bgfacebook">
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center ">
+                        <div class="fontgr1"> Realtime statistic
+                        </div>
+                    </div>
+
+
+
+                </ons-toolbar>
+                <ons-card class="align-c height90 glass2">
+
+                    <div style="text-align: center; margin-top: 30px">
+                        <!-- <p>
+                            <ons-input id="user" modifier="underbar" placeholder="user" float ng-model="user">
+                            </ons-input>
+                        </p> -->
+                        <p>
+                            <ons-input class="" id="loginid" modifier="underbar" type="loginid" placeholder=" loginid"
+                                float ng-model="vm.loginid"></ons-input>
+                        </p>
+                        <p style="margin-top: 30px;">
+                            <ons-button modifier="large" ng-click="login(vm.loginid)"
+                                class="btn1 fontm padall3vW fontbg6">
+                                Sign
+                                in</ons-button>
+                        </p>
+                    </div>
+                    <div class=" padall3vW"><img src="app/bi/key.png" alt="Onsen UI" style="width: 50%"></div>
+                </ons-card>
+                <!-- <ons-card class="align-c btn2 height90 fontgr1">
+                    <div style="text-align: center; margin-top: 100px">
+
+                        <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float
+                            ng-model="password"></ons-input>
+                        <img src="app/bi/key.png" alt="Onsen UI" style="width: 50%;padding: 20px">
+                    </div>
+
+                    <section style="padding: 20px">
+                        <ons-button modifier="large" ng-click="login(password)" class="btn1 fontm btnheight ">Sign in
+                        </ons-button>
+                    </section>
+                </ons-card> -->
+            </ons-page>
+        </template>
+        <template id="admin.html">
+            <ons-page>
+                <ons-toolbar class="bgfacebook ">
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center ">
+                        <div class="fontgr1"> ADMIN
+                        </div>
+                    </div>
+
+                    <div class="right">
+                        <ons-button ng-click="bi.load('menuopd.html')"
+                            style="float:right;margin-top: 1.5vH;margin-right: 1vH;" class="backgr4">
+                            >>
+                        </ons-button>
+                    </div>
+                </ons-toolbar>
+                <ons-card class="align-c   ">
+                    <div style="text-align: center; margin-top: 10px">
+                        <div class="pad7">
+                            <ons-input id="user" modifier="underbar" type="text" placeholder="user" float
+                                ng-model="bi.muser"></ons-input>
+                        </div>
+                        <div class="pad7">
+                            <ons-input id="password" modifier="underbar" type="text" placeholder="Password" float
+                                ng-model="bi.mpassword"></ons-input>
+                        </div>
+
+                        <ons-list-header>Choose site</ons-list-header>
+                        <div ng-repeat="mm in organize">
+                            <ons-list-item ng-show="mm.show==true">
+                                <div class="center">
+                                    {{mm.description}}
+                                </div>
+                                <div class="right">
+                                    <ons-switch ng-model="mm.checked"></ons-switch>
+                                </div>
+                            </ons-list-item>
+                        </div>
+                    </div>
+
+                    <section style="padding: 10px">
+                        <ons-button modifier="large" ng-click="saveuser(bi.muser,bi.mpassword)" class="fontm btnheight">
+                            Save</ons-button>
+                    </section>
+
+                    <table class=" fontn">
+                        <tr ng-repeat="detail in alluser">
+                            <td class="pad5 align-l ">
+                                <div>user : {{detail.user}}</div>
+                                <div>password : {{detail.password}}</div>
+                                <div>orguid : </div>
+                                <div ng-repeat="xx in detail.name">{{xx}}</div>
+
+                                <div>
+                                    <ons-button modifier="" ng-click="deleteuser($index)" class="fonts">
+                                        Delete</ons-button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </ons-card>
+            </ons-page>
+        </template>
+        <template id="opd.html">
+            <ons-page>
+                <ons-toolbar class="bgfacebook ">
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center ">
+                        <div class="fontgr1"> OPDvisit
+                        </div>
+                    </div>
+
+                    <div class="right">
+                        <ons-button ng-click="bi.load('menuopd.html')"
+                            style="float:right;margin-top: 1.5vH;margin-right: 1vH;" class="backgr4">
+                            >>
+                        </ons-button>
+                    </div>
+                </ons-toolbar>
+                <!-- <ons-card class="heightfull"> -->
+                <ons-list>
+                    <div id='b2' class="">
+                        <ons-button modifier="large" class="fontlato fontbold fontm backgr11">{{site}}
+                        </ons-button>
+
+                        <table class=" fontm neumorphic">
+                            <tr ng-repeat="detail in opdvisit">
+                                <td class="pad5 align-l ">{{detail.department}}</td>
+                                <td class=" align-c ">{{detail.count | number:0}}</td>
+                            </tr>
+                        </table>
+                        <ons-button modifier="large" class="fontlato fontbold fontm backgr11">total : {{total |
+                            number:0}} case
+                        </ons-button>
+                    </div>
+                </ons-list>
+                <!-- </ons-card> -->
+            </ons-page>
+        </template>
+        <template id="ipd.html">
+            <ons-page>
+                <ons-toolbar class="bgfacebook ">
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center ">
+                        <div class="fontgr1"> IPD case
+                        </div>
+                    </div>
+
+                    <div class="right">
+                        <ons-button ng-click="bi.load('menuipd.html')"
+                            style="float:right;margin-top: 1.5vH;margin-right: 1vH;" class="backgr4">
+                            >>
+                        </ons-button>
+                    </div>
+                </ons-toolbar>
+                <!-- <ons-card class="heightfull"> -->
+                <ons-list>
+                    <div id='b2' class="">
+                        <ons-button modifier="large" class="fontlato fontbold fontm backgr11">{{site}}
+                        </ons-button>
+
+                        <table class="neumorphic fontm ">
+                            <tr ng-repeat="detail in newwarddata">
+                                <td class="pad5 align-l ">{{detail.wardname}}</td>
+                                <td class=" align-r ">{{detail.count | number:0}}</td>
+                                <td class=" align-r ">({{detail.bedcount | number:0}})</td>
+                            </tr>
+                        </table>
+                        <ons-button modifier="large" class="fontlato fontbold fontm backgr11">total : {{total |
+                            number:0}} case ({{totalbed | number:0}})
+                        </ons-button>
+
+                    </div>
+                </ons-list>
+                <!-- </ons-card> -->
+            </ons-page>
+        </template>
+        <template id="opdall.html">
+            <ons-page>
+                <ons-toolbar class="bgfacebook ">
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center ">
+                        <div class="fontgr1"> PRINC
+                        </div>
+                    </div>
+
+                    <div class="right">
+                        <ons-button ng-click="bi.load('menuopd.html')"
+                            style="float:right;margin-top: 1.5vH;margin-right: 1vH;" class="backgr4">
+                            >>
+                        </ons-button>
+                    </div>
+                </ons-toolbar>
+                <ons-list>
+                    <div id='b2' class="">
+
+                        <table class="neumorphic fontm heightfull">
+                            <tr class="" ng-repeat="detail in opdall">
+                                <td class="pad7 align-l ">{{detail._id.orguid}}</td>
+                                <td class=" align-r ">{{detail.count | number:0}}</td>
+                            </tr>
+                        </table>
+                        <ons-button modifier="large" class="fontlato fontbold fontm backgr11"> Total : {{total |
+                            number:0}} case
+                        </ons-button>
+                    </div>
+                </ons-list>
+            </ons-page>
+        </template>
+        <template id="ipdall.html">
+            <ons-page>
+                <ons-toolbar class="bgfacebook ">
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center ">
+                        <div class="fontgr1"> PRINC
+                        </div>
+                    </div>
+
+                    <div class="right">
+                        <ons-button ng-click="bi.load('menuipd.html')"
+                            style="float:right;margin-top: 1.5vH;margin-right: 1vH;" class="backgr4">
+                            >>
+                        </ons-button>
+                    </div>
+                </ons-toolbar>
+                <ons-list>
+                    <div id='b2' class="" >
+
+                        <table class="neumorphic fontm heightfull">
+                            <tr class="" ng-repeat="detail in ipdall">
+                                <td class="pad7 align-l ">{{detail.orguid}}</td>
+                                <td class=" align-r ">{{detail.count | number:0}}</td>
+                            </tr>
+                        </table>
+                        <ons-button modifier="large" class="fontlato fontbold fontm backgr11"> Total : {{total |
+                            number:0}} case
+                        </ons-button>
+                    </div>
+                </ons-list>
+            </ons-page>
+        </template>
+        <template id="menuopd.html">
+            <ons-page>
+                <ons-toolbar class="bgfacebook ">
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        <div class="fontgr1"> OPD
+                        </div>
+                    </div>
+                    <div class="right">
+                        <ons-button ng-click="bi.load('menuopd.html')"
+                            style="float:right;margin-top: 1.5vH;margin-right: 1vH;" class="backgr4">
+                            >>
+                        </ons-button>
+                    </div>
+                </ons-toolbar>
+                <div class="  fontbold fontl align-c mybutton1">Click to Choose Organise</div>
+                <div  ng-repeat="detail in organize"  style="max-height:90vH;overflow-y:scroll;">
+                    <ons-button class=" fontbg11 fontm myheader1" style="width:100%;"
+                        ng-click="opd(detail._id,detail.description)" ng-show="detail.show==true">
+                        {{detail.description}}
+                    </ons-button>
+                </div>
+            </ons-page>
+        </template>
+        <template id="menuipd.html">
+            <ons-page>
+                <ons-toolbar class="bgfacebook ">
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center ">
+                        <div class="fontgr1"> IPD
+                        </div>
+                    </div>
+                    <div class="right">
+                        <ons-button ng-click="bi.load('menuipd.html')"
+                            style="float:right;margin-top: 1.5vH;margin-right: 1vH;" class="backgr4">
+                            >>
+                        </ons-button>
+                    </div>
+                </ons-toolbar>
+                <div class="  fontbold fontl align-c mybutton1">Click to Choose Organise</div>
+                <div  ng-repeat="detail in organize"  style="max-height:90vH;overflow-y:scroll;">
+                    <ons-button class="myheader1 fontbg11 fontm" style="width:100%;"
+                        ng-click="ipd(detail._id,detail.description)" ng-show="detail.show==true">
+                        {{detail.description}}
+                    </ons-button>
+                </div>
+
+            </ons-page>
+        </template>
+        <template id="menurevenue.html">
+            <ons-page>
+                <ons-toolbar class="bgfacebook ">
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center ">
+                        <div class="fontgr1"> revenue
+                        </div>
+                    </div>
+                    <div class="right">
+                        <ons-button ng-click="bi.load('menurevenue.html')"
+                            style="float:right;margin-top: 1.5vH;margin-right: 1vH;" class="backgr4">
+                            >>
+                        </ons-button>
+                    </div>
+                </ons-toolbar>
+                <div class="  fontbold fontl align-c mybutton1">Click to Choose Organise</div>
+                <div ng-repeat="detail in organize" style="max-height:90vH;overflow-y:scroll;">
+                    <ons-button class="myheader1 fontbg11 fontm" style="width:100%;"
+                        ng-click="allrevenue(detail._id,detail.description)" ng-show="detail.show==true">
+                        {{detail.description}}
+                    </ons-button>
+                </div>
+
+            </ons-page>
+        </template>
+        <template id="revenue.html">
+            <ons-page>
+                <ons-toolbar class="bgfacebook ">
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center ">
+                        <div class="fontgr1"> revenue
+                        </div>
+                    </div>
+
+                    <div class="right">
+                        <ons-button ng-click="bi.load('menurevenue.html')"
+                            style="float:right;margin-top: 1.5vH;margin-right: 1vH;" class="backgr4">
+                            >>
+                        </ons-button>
+                    </div>
+                </ons-toolbar>
+                <ons-list>
+                    <div id='b2' class="">
+                        <ons-button modifier="large" class="fontlato fontbold fontm backgr11">{{site}}
+                        </ons-button>
+                        <table class=" fonts">
+                            <tr>
+                                <td class="pad5 align-l ">
+                                    <div> Date</div>
+                                </td>
+                                <td class="pad5 align-r ">
+                                    <div>case(O/I) </div>
+                                </td>
+                                <td class="pad5 align-r ">
+                                    <div>revenue(OPD) </div>
+                                </td>
+                                <td class="pad5 align-r ">
+                                    <div>(IPD) </div>
+                                </td>
+                                <td class="pad5 align-r ">
+                                    <div>total </div>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="detail in revenue">
+                                <td class="pad5 align-l ">
+                                    <div> {{detail._id.tdate}}</div>
+                                </td>
+                                <td class="pad5 align-r ">
+                                    <div>{{detail.opdcase | number:0}} / {{detail.ipdcase | number:0}}</div>
+                                </td>
+                                <td class="pad5 align-r ">
+                                    <div>{{detail.OPD | number:0}}</div>
+                                </td>
+                                <td class="pad5 align-r ">
+                                    <div> {{detail.IPD | number:0}}</div>
+                                </td>
+                                <td class="pad5 align-r ">
+                                    <div>{{detail.OPD+detail.OID | number:0}}</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </ons-list>
+                <!-- <div style="overflow-x:scroll;overflow-y:scroll"> -->
+                <!-- <div id='rev_chart'>
+                            aaa
+                        </div> -->
+                <!-- </div> -->
+                <!-- </ons-card> -->
+            </ons-page>
+        </template>
+
+        <template id="loading.html">
+            <ons-page>
+                <ons-toolbar class="bgfacebook ">
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+                <ons-card class="heightfull btn2">
+                    <img src="./app/loading.gif" alt="" style="width: 100%">
+
+                </ons-card>
+            </ons-page>
+        </template>
+        <!-- <template id="home.html">
+            <ons-page>
+                <ons-toolbar class="bgfacebook ">
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        home
+                    </div>
+                </ons-toolbar>
+
+            </ons-page>
+        </template> -->
+        <template id="about.html">
+            <ons-page>
+                <ons-toolbar class="bgfacebook ">
+                    <div class="left">
+                        <ons-toolbar-button ng-click="mySplitter.left.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+                <ons-card>
+                    about
+                    <img src="./app/menu/about.jpg" alt="" style="width: 100%">
+
+                </ons-card>
+            </ons-page>
+        </template>
+
+    </div>
+</body>
+
+</html>

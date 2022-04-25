@@ -1,0 +1,68 @@
+{
+	"_id" : "5784c4d032f3003ef802ae15",
+	"valuedescription" : "Registered",
+	"displayorder" : 1,
+	"relatedvalue" : "R"
+}
+{
+	"_id" : "5784c4d032f3003ef802ae16",
+	"valuedescription" : "Arrived",
+	"displayorder" : 2,
+	"relatedvalue" : "I"
+},
+{
+	"_id" : "5a0ac84700d17a9459beab28",
+	"valuedescription" : "Triaged",
+	"displayorder" : null,
+	"relatedvalue" : "T"
+},
+{
+	"_id" : "5784c4d032f3003ef802ae17",
+	"valuedescription" : "Screening Completed",
+	"displayorder" : 3,
+	"relatedvalue" : "I"
+},
+{
+	"_id" : "5784c4d032f3003ef802ae18",
+	"valuedescription" : "Consultation Started",
+	"displayorder" : 4,
+	"relatedvalue" : "I"
+},
+{
+	"_id" : "5784c4d032f3003ef802ae19",
+	"valuedescription" : "Consultation Completed",
+	"displayorder" : 5,
+	"relatedvalue" : "I"
+},
+{
+	"_id" : "57c6712c4f362d6b9c5ef09e",
+	"valuedescription" : "Under Observation",
+	"displayorder" : 6,
+	"relatedvalue" : "O"
+},
+{
+	"_id" : "5784c4d032f3003ef802ae1b",
+	"valuedescription" : "Medical Discharge",
+	"displayorder" : 7,
+	"relatedvalue" : "D"
+},
+{
+	"_id" : "57c4446aa454a0ba852ce690",
+	"valuedescription" : "Billing Inprogress",
+	"displayorder" : 8,
+	"relatedvalue" : "B"
+},
+{
+	"_id" : "5784c4d032f3003ef802ae1a",
+	"valuedescription" : "Bill Finalized",
+	"displayorder" : 9,
+	"relatedvalue" : "BF"
+},
+
+
+{
+	"_id" : "5784c4d032f3003ef802ae1c",
+	"valuedescription" : "Financial Discharge",
+	"displayorder" : 10,
+	"relatedvalue" : "F"
+},

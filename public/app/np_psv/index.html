@@ -1,0 +1,130 @@
+
+<ons-splitter var="mySplitter" ng-controller="gangController as gang">
+    <ons-splitter-side side="left" width="220px" collapse swipeable>
+        <ons-page>
+            <ons-list>
+                <ons-list-item ng-click="gang.load('home.html')" tappable>
+                    Home
+                </ons-list-item>
+                <ons-list-item ng-click="gang.load('Episode.html')" tappable>
+                    Check up
+                </ons-list-item>
+                <ons-list-item ng-click="gang.load('about.html')" tappable>
+                    About
+                </ons-list-item>
+            </ons-list>
+        </ons-page>
+    </ons-splitter-side>
+    <ons-splitter-content page="home.html"></ons-splitter-content>
+</ons-splitter>
+
+<template id="home.html">
+    <ons-page>
+        <ons-toolbar>
+            <div class="left">
+                <ons-toolbar-button ng-click="mySplitter.left.open()">
+                    <ons-icon icon="md-menu"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="center">
+                Home
+            </div>
+        </ons-toolbar>
+        <!-- <div style="text-align: center;">
+           
+            <ons-button>Home Button</ons-button>
+        </div> -->
+        <ons-card>
+            <div>
+                <div ng-if="showpict=='Y'" style="text-align: center;">
+                    <img style="width: 80%;" src="{{picture}}" alt="No picture found">
+                </div>
+                <div ng-if="showpict=='N'" style="text-align: center;">
+                    <img style="width: 80%;" src="./app/menu/nopeople.png" alt="No picture found">
+                </div>
+            </div>
+            <div class="title" style="text-align: center;">
+                HN : {{patient.mrn}}
+            </div>
+            <div class="content">
+                <ons-list>
+                    <ons-list-header> {{patient.firstname}} {{patient.lastname}}</ons-list-header>
+                    <ons-list-item>DOB : {{thaiDOB}} </ons-list-item>
+                    <ons-list-item>Age : {{age}} </ons-list-item>
+
+                </ons-list>
+            </div>
+        </ons-card>
+    </ons-page>
+</template>
+
+<template id="Episode.html">
+    <ons-page>
+        <ons-toolbar>
+            <div class="left">
+                <ons-toolbar-button ng-click="mySplitter.left.open()">
+                    <ons-icon icon="md-menu"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="center">
+                Check up Date
+            </div>
+        </ons-toolbar>
+
+        <ons-page>
+            <!-- <ons-toolbar>
+                  <div class="center">List Episode</div>
+                </ons-toolbar> -->
+
+            <ons-list>
+                <ons-list-item ons-lazy-repeat="MyDelegate" ng-click="showdetail()">
+                    <!-- <ons-list-item ons-lazy-repeat="MyDelegate"  ng-click="splitter.load('about.html')"  > -->
+
+                    วันที่ : {{item.startdate  }}<Br>
+                    EN : {{item.visitid}}<Br>
+                    <!-- อาการ : {{item.cchpi}} -->
+                </ons-list-item>
+            </ons-list>
+        </ons-page>
+    </ons-page>
+</template>
+
+<template id="result.html">
+    <ons-page>
+        <ons-toolbar>
+            <div class="left">
+                <ons-toolbar-button ng-click="mySplitter.left.open()">
+                    <ons-icon icon="md-menu"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="center">
+                result
+            </div>
+        </ons-toolbar>
+        <!-- <div style="text-align: center;">
+            result 
+        </div> -->
+        <ons-card >
+            <div id='chart_fbs' >
+        </ons-card>
+
+
+        </div>
+    </ons-page>
+</template>
+
+<template id="about.html">
+    <ons-page>
+        <ons-toolbar>
+            <div class="left">
+                <ons-toolbar-button ng-click="mySplitter.left.open()">
+                    <ons-icon icon="md-menu"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+        </ons-toolbar>
+        <ons-card>
+                <img src="./app/menu/about.jpg" alt="" style="width: 100%">
+
+        </ons-card>
+    </ons-page>
+</template>

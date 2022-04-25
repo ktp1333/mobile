@@ -1,0 +1,247 @@
+<form id="r1" ng-if="show_report1">
+  <style type="text/css">
+    .dd {
+      min-height: 80vH;
+      max-height: 80vH;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      /* border:solid 1px gray; */
+      margin-left: 3px;
+      /* text-align: left; */
+    }
+
+    span.myspan {
+      background-color: #e6e4e2;
+      display: inline-block;
+      width: 200px;
+      /* height: 30px */
+      font-size: 1.3em;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 5px;
+    }
+    span.myspan01 {
+      background-color:#757575;
+      display: inline-block;
+      width: 200px;
+      /* height: 30px */
+      font-size: 1.3em;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 5px;
+      text-align: center;
+      color: aliceblue;
+    }
+    span.myspan2 {
+      background-color: #c5ebc3;
+      display: inline-block;
+      width: 200px;
+      /* height: 30px; */
+      font-size: 1.3em;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 5px;
+    }
+    span.myspan02 {
+      background-color:#757575;
+      display: inline-block;
+      width: 200px;
+      /* height: 30px */
+      font-size: 1.3em;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 5px;
+      text-align: center;
+      color: aliceblue;
+    }
+    span.myspan3 {
+      background-color: #FFE0B2;
+      display: inline-block;
+      width: 200px;
+      /* height: 30px; */
+      font-size: 1.5em;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 5px;
+    }
+    span.myspan03 {
+      background-color:#FF9800;
+      display: inline-block;
+      width: 200px;
+      /* height: 30px */
+      font-size: 1.5em;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 5px;
+      text-align: center;
+      color: aliceblue;
+    }
+  </style>
+
+  <!-- <div class="container">
+    <div class="jumbotron" ng-if="mlabel != ''">
+      <h1> {{mlabel}}</h1> 
+    </div>
+  </div> -->
+  <div style="float: left; width: 20%;">
+    <div class="panel panel-info dd">
+      <div class="panel-heading">Choose option </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <div align="center">
+            <h5>
+              <div>วันที่ :
+                <input type="date" class="form-control" id="datepicger" ng-model="dtp.value" min="2016-01-01" required />
+                <div role="alert">
+                  <span class="error" ng-show="myForm.input.$error.required">required!</span>
+                  <span class="error" ng-show="myForm.input.$error.date">Not a valid date!</span>
+                </div>
+                <input type="text" name="tdate" class="form-control" value="{{transdate(dtp.value)}}" ng-hide="true" />
+              </div>
+              <Br>
+              <div>เวร :
+                <select name="repeatSelect" class="form-control" id="repeatSelect" ng-model="x.ID" autofocus>
+                  <option ng-repeat="x in nursetimes" value="{{x}}">{{x.timeact}}</option>
+                </select>
+                <input type="text" class="form-control" name="timeact" placeholder="timeact" value="{{x.repeatSelect}}" ng-hide="true" required/>
+              </div>
+              <Br>
+              <md-content flex layout-padding>
+                <div layout="column" layout-align="top left">
+
+                  <md-button ng-click="selectdata(dtp.value,x.ID)" class="md-raised width150" >
+                    Calculate
+                  </md-button>
+                  <!-- <md-button ng-click="selectdata1day(dtp.value)" class="md-raised width150" >
+                    All day
+                  </md-button> -->
+                </div>
+              </md-content>
+
+              <Br>
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div style="float: left; width: 40%;">
+    <div class="panel panel-info dd">
+      <div class="panel-heading">Detail </div>
+      <div class="panel-body" ng-if="show_selectdate==true">
+        <div class="table-responsive">
+          <div align="left">
+            <h5>
+              <span class="myspan">Date: </span>
+              <span class="myspan01 ">{{titledate}}</span>
+              <Br>
+              <Br>
+              <span class="myspan">เวร: </span>
+              <span class="myspan01">{{staffs.time}}</span>
+              <Br>
+              <Br>
+              <span class="myspan">Census: </span>
+              <span class="myspan01">{{census}}</span>
+              <Br>
+              <Br>
+
+              <span class="myspan">Require Hours: </span>
+              <span class="myspan01">{{requirehour | number : 2}} ชม</span>
+              <Br>
+              <Br>
+              <span class="myspan">Staff Hours: </span>
+              <span class="myspan01">{{actualstaffhour | number : 2}} ชม</span>
+              <Br>
+              <Br>
+              <span class="myspan">% Productivity: </span>
+              <!--ng-if="{{(details.requirehour/staffs.sthour*100)>}}==100"-->
+              <span class="myspan01">{{(requirehour/actualstaffhour*100) | number : 2}}%</span>
+              <!--<span  class="label label-danger">{{(details.requirehour/staffs.sthour*100) | number : 2}}</span>-->
+              <Br>
+              <Br>
+              <span class="myspan">Actual total Staff: </span>
+              <span class="myspan01">{{actualtotalstaff | number : 0}} คน</span>
+              <Br>
+              <Br>
+              <span class="myspan">Require total Staff:</span>
+              <span class="myspan01">{{require_total_Staff | number : 2}} คน</span>
+              <Br>
+              <Br>
+              <span class="myspan">Actual RN/PN </span>
+              <span class="myspan01">{{(staffs.HOD+staffs.RN) | number : 0}} : {{staffs.PN | number : 0}}</span>
+              <Br>
+              <Br>
+              <span class="myspan">Require RN/PN </span>
+              <span class="myspan01">{{require_RN | number : 2}} : {{require_PN | number : 2}}</span>
+              <Br>
+              <Br>
+            </h5>
+            <Br>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+  <div style="float: right;width: 40%; ">
+    <div class="panel panel-warning dd">
+      <div class="panel-heading">Suggestion for next shift </div>
+      <div class="panel-body" ng-if="show_selectdate==true">
+        <div class="table-responsive">
+          <div align="left">
+            <h5>
+              <Br>
+              <span class="myspan2">เวรถัดไป: </span>
+              <span class="myspan02"></span>
+              <Br>
+              <Br>
+              <span class="myspan2">case </span>
+              <span class="myspan02">{{census}}</span>
+              <Br>
+              <Br>
+              <span class="myspan2">Require Hours </span>
+              <span class="myspan02">{{next_requirehour| number : 2}}</span>
+              <Br>
+              <!-- <span class="myspan2">Require total Staff</span>
+              <span class="myspan02">{{x/staffhour | number : 2}}</span>
+              <Br>
+              <Br>
+              <span class="myspan2"> RN </span>
+              <span class="myspan02">{{(x/staffhour)*(RN/totalnurse) | number : 2}}</span>
+              <Br>
+              <Br>
+              <span class="myspan2"> PN </span>
+              <span class="myspan02">{{(x/staffhour)*(PN/totalnurse) | number : 2}}</span>
+             -->
+              <Br>
+              <div class="form-group ">
+                RN:
+                <input type="text" name="RN" class="form-control width100" placeholder="RN " ng-model="nextRN" value=" " />
+
+              </div>
+              <div class="form-group ">
+                PN:
+                <input type="text" name="PN" class="form-control width100" placeholder="PN " ng-model="nextPN" value=" " />
+              </div>
+
+              <div class="form-group ">
+                <span class="myspan3">%Productivity </span>
+                <span class="myspan03" > {{(calnextshift(nextRN,nextPN,next_requirehour,staffworkinghour)*100) | number : 2}}</span>
+              </div>
+
+
+              <Br>
+            </h5>
+            <Br>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</Form>

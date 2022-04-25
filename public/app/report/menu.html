@@ -1,0 +1,99 @@
+<html>
+
+<head>
+  <title></title>
+</head>
+
+<body style="background-color: white;">
+  <form name="myForm" id="menu_form" class="form-horizontal align-c" role="form">
+    <div layout="column" style="height: auto !important;" ng-cloak>
+      <section layout="row" flex>
+        <md-sidenav class="bgcolor100" md-component-id="left" md-disable-backdrop md-whiteframe="4">
+          <md-toolbar class="md-theme-indigo ">
+            <h1 class="md-toolbar-tools bgcolor700">
+              <md-button class="md-icon-button" aria-label="Favorite" ng-click="toggleLeft()">
+                <md-icon ng-bind="'fast_rewind'"></md-icon>
+              </md-button>
+              <p>Choose date
+                <!-- <button type="text" class="btn btn-primary " ng-click="addnewpatient()">
+                  <span class="glyphicon glyphicon-floppy-save"></span>
+                </button> -->
+              </p>
+            </h1>
+          </md-toolbar>
+          <form name="myForm" id="rightform" class="form-horizontal " role="form">
+            <!-- <md-content flex layout-padding>
+              <input type="date" class="form-control width100  align-c" id="datepicger" ng-model="dtp.value" min="2016-01-01"
+                required />
+              <input type="text" name="tdate" class="form-control align-c" value="{{dtp.value}}" ng-hide="true" />
+            </md-content> -->
+
+            <md-content flex layout-padding>From
+              <input type="date" class="form-control   align-c" id="datepicger" ng-model="dtp.value" min="2016-01-01"
+                required />
+              <input type="text" name="tdate" class="form-control align-c" value="{{dtp.value}}" ng-hide="true" />
+            </md-content>
+            <!-- <md-content flex layout-padding>To
+              <input type="date" class="form-control   align-c" id="datepicger" ng-model="dtp2.value" min="2016-01-01"
+                required />
+              <input type="text" name="tdate2" class="form-control align-c" value="{{dtp2.value}}" ng-hide="true" />
+            </md-content> -->
+
+
+            <!-- <md-select class="dd1" ng-model="selectmonth">
+                  <md-option ng-repeat="x in months" ng-selected="x.monthID === selectmonth" value="{{x.monthID}}">
+                    {{x.monthdesc}}
+                  </md-option>
+                </md-select>
+                <md-select class="dd1" ng-model="selectyear">
+                  <md-option ng-repeat="x in years" ng-selected="x.yearID === 'selectyear" value="{{x.yearID}}">
+                    {{x.yeardesc}}
+                  </md-option>
+                </md-select> -->
+            <md-button class="md-raised " ng-click="selectdate(dtp.value)" title="Show" style="width:180px;">Choose</md-button>
+          </form>
+        </md-sidenav>
+        <md-content flex layout-padding>
+          <div layout="row" layout-align="top left">
+
+            <md-button  ng-click="refreshmenu()" >
+              <md-icon ng-bind="'fast_forward'" ></md-icon>
+            </md-button>
+            <md-button  style="width:150px;" class="bgcolor300">
+              {{ward}}
+             </md-button>
+            <md-button ng-click="report1()" class="md-raised width-150">
+              productivity
+            </md-button>
+
+            <md-button ng-click="showdaily(dtp.value)" class="md-raised width-150">
+              daily
+            </md-button>
+            <md-button ng-click="reporttrend(dtp.value)" class="md-raised width-150">
+              trend
+            </md-button>
+            <md-button ng-click="report4(dtp.value)" class="md-raised width-150">
+              Quality
+            </md-button>
+            <md-button class="md-raised bgcolor800 font-white1 width-150" ng-click="exitwindows()">Exit
+              <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+            </md-button>
+            <!-- <md-button   ng-click="report3()" class="md-raised" style="width:120px;">
+                report3
+            </md-button>
+            <md-button   ng-click="report4()" class="md-raised" style="width:120px;">
+                report4
+            </md-button>
+            <md-button   ng-click="report5()" class="md-raised" style="width:120px;">
+                report5
+            </md-button> -->
+          
+          </div>
+        </md-content>
+      </section>
+    </div>
+  </form>
+
+</body>
+
+</html>
